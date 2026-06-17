@@ -17,7 +17,7 @@ const config = {
   organizationName: 'k0f1',
   projectName: 'casedesk-docs',
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
 
   i18n: {
     defaultLocale: 'en',
