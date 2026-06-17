@@ -13,4 +13,4 @@ No cluster required. The CaseDesk Sandbox gives you a managed GPU environment to
 5. Wait for the deployment to go from **pending** to **running** (~7–12 min on first deploy)
 6. Copy your endpoint URL and start making requests
 
-Once you're ready to deploy into your own infrastructure, see [Connect Your Cluster](/docs/connect-your-cluster/aws-eks/existing-cluster).
+Once you're ready to deploy into your own infrastructure, see [Connect Your Cluster](/connect-your-cluster/aws-eks/existing-cluster).

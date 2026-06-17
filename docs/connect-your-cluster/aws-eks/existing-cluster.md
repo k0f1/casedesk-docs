@@ -25,7 +25,7 @@ sidebar_position: 1
 
 ## Recommended: create a scoped IAM user
 
-Rather than using your admin credentials, create a dedicated `casedesk-byoc` user with minimal permissions. See [IAM Scoped Credentials](/docs/security/iam-scoped-credentials).
+Rather than using your admin credentials, create a dedicated `casedesk-byoc` user with minimal permissions. See [IAM Scoped Credentials](/security/iam-scoped-credentials).
 
 ## Connect the cluster
 
@@ -34,4 +34,4 @@ Rather than using your admin credentials, create a dedicated `casedesk-byoc` use
 3. CaseDesk will list your available clusters — select the one to connect
 4. Click **Connect cluster →**
 
-If the connection fails with a 401 error, see [401 Unauthorized](/docs/troubleshooting/401-unauthorized).
+If the connection fails with a 401 error, see [401 Unauthorized](/troubleshooting/unauthorized).
