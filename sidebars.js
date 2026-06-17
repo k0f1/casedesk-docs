@@ -57,7 +57,7 @@ const sidebars = {
       type: 'category',
       label: 'Troubleshooting',
       items: [
-        'troubleshooting/401-unauthorized',
+        'troubleshooting/unauthorized',
         'troubleshooting/deployment-stuck-pending',
       ],
     },
