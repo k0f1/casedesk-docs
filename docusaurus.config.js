@@ -58,7 +58,7 @@ const config = {
             label: 'Docs',
           },
           {
-            href: 'https://getcasedesk.com',
+            href: 'https://www.getcasedesk.com',
             label: '← Back to app',
             position: 'right',
           },
@@ -70,7 +70,7 @@ const config = {
           {
             title: 'CaseDesk',
             items: [
-              {label: 'Back to app', href: 'https://getcasedesk.com'},
+              {label: 'Back to app', href: 'https://www.getcasedesk.com'},
               {label: 'Privacy Policy', href: 'https://getcasedesk.com/privacy'},
               {label: 'Terms of Service', href: 'https://getcasedesk.com/terms'},
               {label: 'Contact', href: 'mailto:hello@getcasedesk.com'},
