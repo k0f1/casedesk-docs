@@ -51,6 +51,25 @@ const sidebars = {
       label: 'Use Your Endpoint',
       items: [
         'use-your-endpoint/openai-compatible-api',
+        'use-your-endpoint/anthropic-compatible-api',
+        'use-your-endpoint/gemini-compatible-api',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Guides',
+      items: [
+        'guides/deploy-deepseek-on-aws-eks',
+        'guides/deploy-llama-on-kubernetes',
+        'guides/deploy-qwen-on-azure-aks',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Comparisons',
+      items: [
+        'comparisons/casedesk-vs-hugging-face-endpoints',
+        'comparisons/casedesk-vs-replicate',
       ],
     },
     {
