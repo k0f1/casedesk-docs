@@ -5,7 +5,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 const config = {
   title: 'CaseDesk Docs',
   tagline: 'Deploy AI on your own infrastructure',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon.svg',
 
   future: {
     v4: true,
@@ -58,7 +58,7 @@ const config = {
             label: 'Docs',
           },
           {
-            href: 'https://www.getcasedesk.com',
+            href: 'https://getcasedesk.com',
             label: '← Back to app',
             position: 'right',
           },
@@ -70,7 +70,7 @@ const config = {
           {
             title: 'CaseDesk',
             items: [
-              {label: 'Back to app', href: 'https://www.getcasedesk.com'},
+              {label: 'Back to app', href: 'https://getcasedesk.com'},
               {label: 'Privacy Policy', href: 'https://getcasedesk.com/privacy'},
               {label: 'Terms of Service', href: 'https://getcasedesk.com/terms'},
               {label: 'Contact', href: 'mailto:hello@getcasedesk.com'},
