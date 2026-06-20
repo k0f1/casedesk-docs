@@ -11,3 +11,7 @@ sidebar_position: 1
 | Phi-3 Mini 4K | Lightweight tasks, low latency | 8 GB | $28 |
 
 Costs are AWS infrastructure estimates billed directly by your cloud provider — not by CaseDesk.
+
+:::tip Evaluating hosted alternatives?
+If you're comparing CaseDesk against GPU cloud or serverless inference providers, see the [comparison pages](https://getcasedesk.com/compare) for a side-by-side breakdown on cost, data ownership, and control.
+:::
