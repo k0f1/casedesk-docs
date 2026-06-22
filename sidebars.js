@@ -36,6 +36,20 @@ const sidebars = {
             'connect-your-cluster/azure-aks/create-cluster',
           ],
         },
+        {
+          type: 'category',
+          label: 'Google GKE',
+          items: [
+            'connect-your-cluster/gcp-gke/existing-cluster',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'GPU VM (no Kubernetes)',
+          items: [
+            'connect-your-cluster/gpu-vm/connect-via-ssh',
+          ],
+        },
       ],
     },
     {
