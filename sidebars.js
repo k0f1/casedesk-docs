@@ -18,36 +18,49 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Connect Your Cluster',
+      label: 'Connect Infrastructure',
       items: [
         {
           type: 'category',
-          label: 'AWS EKS',
+          label: 'Kubernetes Clusters',
           items: [
-            'connect-your-cluster/aws-eks/existing-cluster',
-            'connect-your-cluster/aws-eks/create-cluster',
+            {
+              type: 'category',
+              label: 'AWS EKS',
+              items: [
+                'connect-your-cluster/aws-eks/existing-cluster',
+                'connect-your-cluster/aws-eks/create-cluster',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Azure AKS',
+              items: [
+                'connect-your-cluster/azure-aks/existing-cluster',
+                'connect-your-cluster/azure-aks/create-cluster',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Google GKE',
+              items: [
+                'connect-your-cluster/gcp-gke/existing-cluster',
+              ],
+            },
           ],
         },
         {
           type: 'category',
-          label: 'Azure AKS',
-          items: [
-            'connect-your-cluster/azure-aks/existing-cluster',
-            'connect-your-cluster/azure-aks/create-cluster',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Google GKE',
-          items: [
-            'connect-your-cluster/gcp-gke/existing-cluster',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'GPU VM (no Kubernetes)',
+          label: 'GPU VMs',
           items: [
             'connect-your-cluster/gpu-vm/connect-via-ssh',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'On-prem Servers',
+          items: [
+            'connect-your-cluster/onprem/install-agent',
           ],
         },
       ],
