@@ -27,6 +27,16 @@ curl https://getcasedesk.com/proxy/{deployment-id}/v1/chat/completions \
   }'
 ```
 
+## API key
+
+When calling from a browser session (e.g. the CaseDesk UI itself) no API key is required. When calling from an API client - Open WebUI, LangChain, LlamaIndex, or any SDK - use your **deployment ID** as the API key:
+
+```http
+Authorization: Bearer {deployment-id}
+```
+
+The OpenAI SDK and most compatible clients accept this via the `api_key` parameter.
+
 ## Python
 
 ```python
@@ -34,7 +44,7 @@ from openai import OpenAI
 
 client = OpenAI(
     base_url="https://getcasedesk.com/proxy/{deployment-id}/v1",
-    api_key="not-needed",
+    api_key="{deployment-id}",  # use your deployment ID as the key
 )
 
 response = client.chat.completions.create(
@@ -51,7 +61,7 @@ import OpenAI from 'openai';
 
 const client = new OpenAI({
   baseURL: 'https://getcasedesk.com/proxy/{deployment-id}/v1',
-  apiKey: 'not-needed',
+  apiKey: '{deployment-id}',
 });
 
 const response = await client.chat.completions.create({

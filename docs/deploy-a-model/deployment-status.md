@@ -7,8 +7,10 @@ sidebar_position: 2
 | Status | Meaning |
 |--------|---------|
 | **Pending** | Kubernetes resources created, pod starting up |
+| **Pulling** | Downloading the model weights - this can take several minutes |
 | **Running** | Model is loaded and the endpoint is live |
-| **Failed** | Pod failed to start — check the error message and logs |
+| **Recovering** | Model was unloaded (e.g. pod restart) and is being re-pulled automatically |
+| **Failed** | Deployment could not start or auto-recovery failed - check the error message |
 
 ## First deploy cold-start times
 

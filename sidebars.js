@@ -89,6 +89,7 @@ const sidebars = {
         'guides/deploy-deepseek-on-aws-eks',
         'guides/deploy-llama-on-kubernetes',
         'guides/deploy-qwen-on-azure-aks',
+        'guides/use-with-open-webui',
       ],
     },
     {
