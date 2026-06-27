@@ -2,196 +2,137 @@
 sidebar_position: 4
 ---
 
-# Using Open WebUI with CaseDesk
+# Chat Interfaces and Integrations
 
 ## Overview
 
-CaseDesk deploys open-source AI models to your own infrastructure and exposes them through an OpenAI-compatible API. This allows you to use your deployed models with applications such as Open WebUI without modifying your code.
+CaseDesk deploys open-source AI models to your own infrastructure and exposes them through an OpenAI-compatible API. Once your model is running, you can connect any OpenAI-compatible application to it - a chat interface, a workflow tool, a customer service bot, or your own application.
 
-In this guide you'll learn how to connect Open WebUI to a model deployed by CaseDesk.
-
----
-
-## Prerequisites
-
-Before you begin, make sure you have:
-
-- A model successfully deployed with CaseDesk
-- An active deployment endpoint
-- Open WebUI installed locally
-
-For example, after deployment CaseDesk provides an endpoint similar to:
-
-```text
-https://getcasedesk.com/proxy/<deployment-id>/v1
-```
+This guide covers your options, starting with the simplest.
 
 ---
 
-## Installing Open WebUI
+## Option 1 - CaseDesk Chat (Recommended)
 
-If you haven't installed Open WebUI yet, choose one of the following options.
+CaseDesk provides a hosted Open WebUI workspace for every paid plan. No installation required.
 
-**Docker (recommended):**
+**To open your workspace:**
 
-```bash
-docker run -d \
-  -p 3000:8080 \
-  --add-host=host.docker.internal:host-gateway \
-  -v open-webui:/app/backend/data \
-  --name open-webui \
-  --restart always \
-  ghcr.io/open-webui/open-webui:main
-```
+1. Go to your deployment page
+2. Click the **Chat clients** tab
+3. Click **Open CaseDesk Chat**
 
-Open `http://localhost:3000`.
+Your workspace is pre-configured. Your deployed model appears in the model selector immediately.
 
-**Python (pip):**
+**What you get:**
+- A persistent chat interface at `https://<your-subdomain>.chat.getcasedesk.com`
+- Your deployment endpoints synced automatically as connections
+- Multi-user support - invite your team
+- Conversation history, file uploads, and model switching built in
 
-```bash
-pip install open-webui
-open-webui serve
-```
+No Docker, no configuration, no API keys to copy manually.
 
-Open `http://localhost:3000`.
-
----
-
-## Step 1 - Open Open WebUI
-
-Start Open WebUI and open:
-
-```text
-http://localhost:3000
-```
-
-:::tip
-You only need to type this once. Bookmark it in your browser or install it as a desktop application from Chrome or Edge.
+:::info Plan availability
+CaseDesk Chat is available on Pro and above. Free plan users can run Open WebUI locally using Option 2.
 :::
 
 ---
 
-## Step 2 - Open Connections
+## Option 2 - Run Open WebUI Locally
 
-Navigate to:
+If you prefer to run Open WebUI on your own machine or server, your deployment page provides a pre-configured Docker command.
 
-**Settings** (bottom-left) **> Connections**
+**To get your Docker command:**
 
-Locate the **OpenAI API** connection.
+1. Go to your deployment page
+2. Click the **Chat clients** tab
+3. Copy the command from the **Self-host Open WebUI** section
 
-Click the **Settings** (gear) icon.
+The command looks like this:
+
+```bash
+docker run -d \
+  -p 3000:8080 \
+  -e OPENAI_API_KEY=<your-deployment-id> \
+  -e OPENAI_API_BASE_URL=https://getcasedesk.com/proxy/<your-deployment-id>/v1 \
+  ghcr.io/open-webui/open-webui:main
+```
+
+Your API key and endpoint URL are already filled in. Run it, then open `http://localhost:3000`.
+
+**When to use this option:**
+- You are on the Free plan
+- You want Open WebUI on a specific machine or internal server
+- You have data residency requirements that prevent using a hosted service
+- You are already running Open WebUI and want to add a CaseDesk deployment as a connection
 
 ---
 
-## Step 3 - Configure the OpenAI Connection
+## Option 3 - Connect an Existing Open WebUI Installation
 
-Replace the default URL with your CaseDesk deployment endpoint:
+If your team already runs Open WebUI as a shared service, you can add your CaseDesk deployment as a connection without reinstalling anything.
+
+**In Open WebUI:**
+
+1. Go to **Settings > Connections**
+2. Under **OpenAI API**, click the gear icon
+3. Set the Base URL to your CaseDesk endpoint:
 
 ```text
 https://getcasedesk.com/proxy/<deployment-id>/v1
 ```
 
-Enter your **deployment ID** as the API key. CaseDesk uses the deployment ID to authenticate API clients.
+4. Set the API Key to your deployment ID
+5. Click **Save**
+
+Your deployed model will appear in the model selector.
+
+You can also register your existing Open WebUI installation as a CaseDesk Chat workspace so that CaseDesk keeps your connections in sync automatically when you add new deployments. Go to **Chat Workspaces** in the CaseDesk dashboard and choose **Connect Existing**.
+
+---
+
+## Connecting Other Applications
+
+Your CaseDesk endpoint works with any application that supports a custom OpenAI-compatible API. The endpoint and API key are the same in every case:
 
 | Field | Value |
 | --- | --- |
 | Base URL | `https://getcasedesk.com/proxy/<deployment-id>/v1` |
 | API Key | `<deployment-id>` |
 
-Leave the remaining settings unchanged.
+### Workflow Automation
 
-Click **Save**.
+**n8n** - Use the OpenAI node in n8n, set a custom base URL, and point it at your CaseDesk endpoint. Your deployed model can then power any n8n AI workflow: document summarisation, email triage, data extraction, and more.
 
----
+**Flowise** and **Langflow** support custom OpenAI endpoints directly in their node configuration. Use them to build RAG pipelines, multi-step agents, and visual LLM flows on top of your deployed models.
 
-## Step 4 - Disable Local Ollama (Optional)
+### Customer Service and Support Bots
 
-If you only want to use models deployed by CaseDesk, you can disable the local Ollama connection.
+Any customer service platform with AI capabilities that supports a custom OpenAI endpoint can route requests through your CaseDesk deployment instead of a commercial API. This keeps conversation data within your infrastructure and removes per-token costs to third-party providers.
 
-This prevents Open WebUI from listing locally installed models.
+Tools that work this way include **Botpress** (custom LLM provider), **Chatwoot** (AI assist feature), and any custom chatbot built on the OpenAI SDK.
 
-If you still want access to local models, simply leave the Ollama connection enabled.
+### Developer Tools
 
----
-
-## Step 5 - Refresh Models
-
-Open WebUI discovers available models by calling:
-
-```text
-GET /v1/models
-```
-
-If your deployment appears in the model list, the connection has been configured successfully.
-
-If no models appear:
-
-- Verify the deployment endpoint is correct
-- Verify the deployment is running
-- Verify the deployment ID is entered as the API key
-- Check that your deployment status is **Running** (not Pending or Recovering)
-
----
-
-## Step 6 - Start Chatting
-
-Select your deployed model from the model selector.
-
-Open a new chat.
-
-Begin interacting with your model exactly as you would with ChatGPT or Claude.
-
----
-
-## OpenAI Compatibility
-
-CaseDesk exposes models through the OpenAI API specification so they work with existing AI applications.
-
-Applications that support OpenAI-compatible APIs can connect to your deployment without modification.
-
-CaseDesk currently provides:
-
-- `GET /v1/models`
-- `POST /v1/chat/completions`
-
-### Other compatible tools
-
-Any tool that supports a custom OpenAI endpoint works with CaseDesk. Examples include:
-
-| Tool | Category |
+| Tool | Use case |
 | --- | --- |
-| [Open WebUI](https://openwebui.com) | Chat interface |
-| [LibreChat](https://librechat.ai) | Chat interface |
 | [Continue.dev](https://continue.dev) | IDE coding assistant |
 | [Cline](https://github.com/cline/cline) | IDE agent |
+| [LibreChat](https://librechat.ai) | Chat interface with RAG |
 | [Flowise](https://flowiseai.com) | Visual LLM flow builder |
 | [Langflow](https://langflow.org) | Visual LLM flow builder |
 | n8n AI nodes | Workflow automation |
-| Most IDE AI plugins | Various editors |
+| OpenAI Python / JS SDK | Custom applications |
 
-This ecosystem compatibility is a key advantage of CaseDesk. Rather than building your own chat interface, you can use the tools you already prefer while CaseDesk manages the infrastructure underneath.
-
----
-
-## Accessing Open WebUI Quickly
-
-Although Open WebUI runs locally at `http://localhost:3000`, you don't need to type the address every time.
-
-Recommended options:
-
-- Bookmark the page
-- Install it as a Chrome or Edge application
-- Keep it in your Dock or taskbar for one-click access
+Any tool that accepts a custom `base_url` and `api_key` works with CaseDesk out of the box.
 
 ---
 
-## Looking Ahead
+## Summary
 
-In the future, CaseDesk may provide its own native desktop client that automatically:
-
-- Discovers your deployments
-- Lists available models
-- Connects securely to your infrastructure
-- Eliminates manual API configuration
-
-This would provide a streamlined experience similar to ChatGPT Desktop or Claude Desktop while keeping your models deployed on infrastructure you control.
+| Option | Setup | Best for |
+| --- | --- | --- |
+| CaseDesk Chat (managed) | None - open and use | Most users on paid plans |
+| Local Docker | One command | Free plan, local control |
+| Connect existing | Paste URL + key in settings | Teams already running Open WebUI |
+| Other tools (n8n, chatbots, etc.) | Set custom base URL | Automation, customer service, custom apps |
