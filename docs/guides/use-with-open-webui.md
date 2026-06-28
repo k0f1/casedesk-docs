@@ -14,26 +14,35 @@ This guide covers your options, starting with the simplest.
 
 ## Option 1 - CaseDesk Chat (Recommended)
 
-CaseDesk provides a hosted Open WebUI workspace for every paid plan. No installation required.
+CaseDesk Chat is an optional hosted workspace add-on. One workspace per organization - all your employees share it. No installation required.
 
 **To open your workspace:**
 
-1. Go to your deployment page
+1. Go to any deployment page
 2. Click the **Chat clients** tab
 3. Click **Open CaseDesk Chat**
 
-Your workspace is pre-configured. Your deployed model appears in the model selector immediately.
+If your organization has the Chat Workspace add-on, clicking this button provisions your workspace automatically on first use (takes 2-3 minutes), then opens it instantly every time after. Your deployed model is connected automatically - no API keys to copy.
 
 **What you get:**
 - A persistent chat interface at `https://<your-subdomain>.chat.getcasedesk.com`
 - Your deployment endpoints synced automatically as connections
-- Multi-user support - invite your team
+- Your whole team shares one workspace - invite employees directly inside Open WebUI
 - Conversation history, file uploads, and model switching built in
 
-No Docker, no configuration, no API keys to copy manually.
+No Docker, no configuration, no manual setup.
 
-:::info Plan availability
-CaseDesk Chat is available on Pro and above. Free plan users can run Open WebUI locally using Option 2.
+:::info Add-on pricing
+CaseDesk Chat is a standalone add-on priced by organization size:
+
+| Tier | Employees | Price |
+| --- | --- | --- |
+| Starter | Up to 25 | £49/month |
+| Team | Up to 100 | £99/month |
+| Business | Up to 500 | £199/month |
+| Enterprise | 500+ | Custom |
+
+Contact [sales@getcasedesk.com](mailto:sales@getcasedesk.com) to add it to your account.
 :::
 
 ---
@@ -87,7 +96,7 @@ https://getcasedesk.com/proxy/<deployment-id>/v1
 
 Your deployed model will appear in the model selector.
 
-You can also register your existing Open WebUI installation as a CaseDesk Chat workspace so that CaseDesk keeps your connections in sync automatically when you add new deployments. Go to **Chat Workspaces** in the CaseDesk dashboard and choose **Connect Existing**.
+Your deployed model will appear in the model selector. To keep connections in sync automatically as you add new deployments, consider the CaseDesk Chat add-on (Option 1).
 
 ---
 
@@ -132,7 +141,7 @@ Any tool that accepts a custom `base_url` and `api_key` works with CaseDesk out 
 
 | Option | Setup | Best for |
 | --- | --- | --- |
-| CaseDesk Chat (managed) | None - open and use | Most users on paid plans |
-| Local Docker | One command | Free plan, local control |
+| CaseDesk Chat (managed) | None - one click provisions it | Organizations with the Chat Workspace add-on |
+| Local Docker | One command | Self-hosted control, no add-on needed |
 | Connect existing | Paste URL + key in settings | Teams already running Open WebUI |
 | Other tools (n8n, chatbots, etc.) | Set custom base URL | Automation, customer service, custom apps |
