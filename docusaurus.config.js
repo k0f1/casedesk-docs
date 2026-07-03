@@ -13,6 +13,7 @@ const config = {
 
   url: 'https://docs.getcasedesk.com',
   baseUrl: '/',
+  trailingSlash: false,
 
   organizationName: 'k0f1',
   projectName: 'casedesk-docs',
