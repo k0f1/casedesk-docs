@@ -45,6 +45,7 @@ const sidebars = {
               label: 'Google GKE',
               items: [
                 'connect-your-cluster/gcp-gke/existing-cluster',
+                'connect-your-cluster/gcp-gke/create-cluster',
               ],
             },
           ],
