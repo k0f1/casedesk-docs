@@ -4,7 +4,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'CaseDesk Docs',
-  tagline: 'Private AI inference for software teams. Deploy to Kubernetes, GPU VMs, or on-prem servers. UK and EU data residency. No shared GPU.',
+  tagline: 'Private AI for software teams. Answer five questions. Get a dedicated AI deployment matched to your team, region, and compliance requirements.',
   favicon: 'img/favicon.svg',
 
   future: {

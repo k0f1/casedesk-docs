@@ -7,32 +7,32 @@ import styles from './index.module.css';
 
 const FeatureList = [
   {
-    title: 'Connect Infrastructure',
-    description: 'Connect a Kubernetes cluster, GPU VM, or on-prem server. Supports AWS EKS, Azure AKS, GKE, and any SSH-accessible server. No Kubernetes required for GPU VMs.',
-    link: '/connect-your-cluster/aws-eks/existing-cluster',
+    title: 'Find Your Platform',
+    description: 'Answer five questions about your team, use case, and region. CaseDesk recommends the right model size, runtime, and compliance tier — no infrastructure knowledge required.',
+    link: '/getting-started/quick-start',
   },
   {
-    title: 'Deploy a Model',
-    description: 'Choose from a curated catalogue of open-source models. One click, no YAML. vLLM continuous batching for up to 50 concurrent users. Scale to zero when idle.',
+    title: 'Dedicated Endpoint',
+    description: 'Your deployment runs on a dedicated namespace — no shared GPU with other customers. vLLM continuous batching serves your whole team simultaneously. Scales to zero when idle.',
     link: '/deploy-a-model/choosing-a-model',
   },
   {
     title: 'Attach Knowledge',
-    description: 'Upload OKF knowledge bundles — your documentation, runbooks, and policies. Models answer questions grounded in your organisation\'s own data.',
+    description: 'Upload OKF knowledge bundles — your documentation, runbooks, and policies. Your endpoint answers questions grounded in your own data, not the open internet.',
     link: '/knowledge/bundles',
   },
   {
     title: 'Use Your AI Endpoint',
-    description: 'Every deployment exposes an OpenAI, Anthropic, and Gemini-compatible REST endpoint. Drop it into any application — no code changes required.',
+    description: 'Every deployment exposes an OpenAI-compatible REST endpoint. Works with Cursor, Continue, LangChain, Open WebUI, or any OpenAI SDK client — no code changes required.',
     link: '/use-your-endpoint/openai-compatible-api',
   },
 ];
 
 const WorkflowSteps = [
-  'Connect Infrastructure',
-  'Deploy Model',
+  'Answer 5 Questions',
+  'Get Recommendation',
+  'Deploy Instantly',
   'Attach Knowledge',
-  'Get Endpoint',
   'Use Anywhere',
 ];
 
@@ -67,9 +67,9 @@ function HomepageHeader() {
           </Link>
           <Link
             className="button button--outline button--secondary button--lg"
-            to="/connect-your-cluster/aws-eks/existing-cluster"
+            to="/use-your-endpoint/openai-compatible-api"
             style={{marginLeft: '1rem'}}>
-            Connect Infrastructure
+            View API Reference
           </Link>
         </div>
       </div>
@@ -82,7 +82,7 @@ export default function Home() {
   return (
     <Layout
       title="CaseDesk Documentation"
-      description="Deploy open-source AI models on your own infrastructure with CaseDesk.">
+      description="Private AI for software teams. Dedicated inference endpoints, your region, your data.">
       <HomepageHeader />
       <main>
         <section style={{padding: '2rem 0 0'}}>
@@ -94,7 +94,7 @@ export default function Home() {
               margin: '0 auto',
               color: 'var(--ifm-color-emphasis-700)',
             }}>
-              CaseDesk deploys and manages open-source AI models on your own infrastructure - Kubernetes, GPU VMs, or on-prem servers. Models run with vLLM for concurrent users, scale to zero when idle, and expose OpenAI-compatible endpoints. Your data never leaves your environment.
+              CaseDesk provisions a dedicated AI endpoint for your engineering team. Choose your model size, region, and compliance level — we handle the infrastructure. vLLM continuous batching, scale to zero when idle, OpenAI-compatible API. Your data never leaves your chosen region.
             </p>
           </div>
         </section>
