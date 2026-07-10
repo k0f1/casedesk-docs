@@ -50,6 +50,10 @@ const config = {
         respectPrefersColorScheme: true,
       },
       navbar: {
+        logo: {
+          alt: 'CaseDesk',
+          src: 'img/logo.svg',
+        },
         title: 'CaseDesk',
         items: [
           {
