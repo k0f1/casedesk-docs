@@ -72,6 +72,14 @@ const sidebars = {
       items: [
         'deploy-a-model/choosing-a-model',
         'deploy-a-model/deployment-status',
+        'deploy-a-model/autoscaling',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Knowledge',
+      items: [
+        'knowledge/bundles',
       ],
     },
     {
