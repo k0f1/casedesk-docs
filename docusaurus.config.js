@@ -53,8 +53,9 @@ const config = {
         logo: {
           alt: 'CaseDesk',
           src: 'img/logo.svg',
+          srcDark: 'img/logo-dark.svg',
         },
-        title: 'CaseDesk',
+        title: '',
         items: [
           {
             type: 'docSidebar',
