@@ -6,47 +6,46 @@ sidebar_position: 2
 
 Replicate is a managed inference platform — you call their API, their servers run the model, and the response comes back to you. It's optimised for ease of use: no infrastructure to manage, wide model selection, pay-per-second billing.
 
-CaseDesk is built around a different principle: the inference compute runs in your cloud account, not Replicate's. Your data doesn't leave your infrastructure.
+CaseDesk is also a managed service, but it runs in a dedicated cluster in your chosen region — UK, EU, or US — so your data never leaves that region. You get the ease of a managed service with the data residency guarantees of self-hosting. When you need inference inside your own cloud account, CaseDesk's BYOC mode deploys the same stack into your own Kubernetes cluster.
 
 ## The core difference
 
-On Replicate, every prompt you send travels across the public internet to Replicate's servers, is processed there, and the response is returned to your application. Replicate controls the hardware and the network path.
+On Replicate, every prompt travels to Replicate's servers, is processed there, and the response is returned. You have no control over which data centre handles your requests.
 
-On CaseDesk, the inference pod is a Kubernetes deployment inside your own AWS VPC or Azure VNet. Prompts flow from your application to CaseDesk's proxy (for routing and auth), then to your inference pod — and the inference pod itself never leaves your network boundary. CaseDesk's control plane does not see or log inference traffic.
+On CaseDesk, your deployment runs on infrastructure CaseDesk manages in the region you select — AWS eu-west-2 for UK, Azure westeurope for EU, GCP us-east1 for US. Your prompts never leave that region. CaseDesk does not log or store inference traffic. A flat monthly subscription replaces Replicate's per-second billing, so cost is predictable at any volume.
 
 ## Comparison table
 
 | | CaseDesk | Replicate |
-|---|---|---|
-| **Where inference runs** | Your AWS / Azure Kubernetes cluster | Replicate's infrastructure |
-| **Data privacy** | Prompts stay in your cloud | Prompts processed on Replicate's servers |
-| **Infrastructure control** | Full — you own the cluster, nodes, and networking | None — fully managed by Replicate |
+| --- | --- | --- |
+| **Where inference runs** | CaseDesk-managed cluster in your chosen region (UK / EU / US) | Replicate's infrastructure |
+| **Data privacy** | Prompts stay in your chosen region; CaseDesk does not log inference | Prompts processed on Replicate's servers |
 | **API format** | OpenAI, Anthropic, and Gemini compatible | Replicate's own prediction API |
 | **OpenAI SDK compatibility** | Yes — drop-in `base_url` override | No — requires Replicate client or REST calls |
-| **Cost model** | Pay AWS/Azure at standard rates | Pay Replicate per second of GPU runtime |
-| **GPU types available** | Any GPU in your AWS/Azure region | Replicate's fleet (T4, A40, A100) |
-| **Cold start latency** | First start: 3–10 min (model pull); subsequent: warm | Per-request cold starts common on shared fleet |
-| **Idle cost** | Zero — scale to zero with cluster autoscaler | Zero — billed per prediction, not per hour |
-| **Custom models** | Any Ollama-compatible model | Must be packaged as a Cog model |
-| **Vendor lock-in** | None | API format and model packaging tied to Replicate |
-| **Setup complexity** | Requires a Kubernetes cluster | None — API key and go |
+| **Cost model** | Flat monthly subscription — no per-second charges | Per second of GPU runtime |
+| **Cold start** | First deploy: 5–10 min; subsequent requests: warm (scale to zero then wake) | Per-request cold starts common on shared fleet |
+| **Idle cost** | Zero — scales to zero when idle | Zero — billed per prediction |
+| **Concurrent users** | Up to 5 / 20 / 50 via vLLM continuous batching (Starter / Team / Advanced) | Shared fleet; throughput varies |
+| **Custom models** | Any model in the catalogue (Llama, DeepSeek, Qwen, Phi, and more) | Must be packaged as a Cog model |
+| **Vendor lock-in** | None — OpenAI-compatible API, open-source models | API format and model packaging tied to Replicate |
+| **Infrastructure setup** | None — CaseDesk provisions and manages everything | None — API key and go |
+| **Own-cloud option** | Yes — BYOC deploys into your AWS EKS, Azure AKS, or GCP GKE | No |
 
 ## Cost model in practice
 
-Replicate charges per second of GPU compute. For sporadic requests (a few hundred per day), this can be very economical. For sustained, high-throughput workloads, the per-second rate adds up quickly and typically exceeds the cost of a dedicated GPU node.
+Replicate charges per second of GPU compute. For sporadic, low-volume workloads this is economical. For sustained team usage — even ten developers making a few requests per minute — the per-second rate adds up quickly and typically exceeds a flat monthly CaseDesk subscription.
 
-CaseDesk runs a dedicated pod — you pay for the node whether it's processing requests or idle. With the cluster autoscaler scaling GPU nodes to zero when no deployments are active, idle cost is eliminated. For workloads with predictable traffic patterns, this is significantly cheaper at scale.
+CaseDesk's flat subscription includes scale-to-zero, so you pay the same monthly amount whether your team is quiet or busy. There are no surprise bills at the end of the month.
 
 ## When Replicate makes sense
 
-- You have sporadic, low-volume inference needs and don't want to manage a Kubernetes cluster.
-- You need access to a wide variety of community models without packaging them yourself.
-- Ease of setup is the top priority and data privacy requirements are not strict.
+- You have sporadic, low-volume inference needs with no strict data residency requirements.
+- You need access to a wide variety of community models without any setup.
+- Ease of API access is the top priority and compliance requirements are not a factor.
 
 ## When CaseDesk makes sense
 
-- Your organisation has data handling requirements that prevent sending prompts to third-party servers (healthcare, finance, legal, government).
-- You already run Kubernetes on AWS or Azure and want to add LLM inference without adding a new vendor.
-- You're integrating with existing code that uses the OpenAI, Anthropic, or Gemini SDKs — no client changes required.
-- You want GPU inference costs to appear in your existing cloud bill, subject to your existing enterprise discounts and committed use arrangements.
-- You need consistent, low-latency performance from a dedicated node rather than shared fleet cold-start variability.
+- Your organisation has data handling requirements that prevent prompts leaving a specific region (healthcare, finance, legal, government).
+- You want predictable flat-rate cost rather than per-second billing that scales with usage.
+- You're integrating with existing code using the OpenAI, Anthropic, or Gemini SDKs — no client changes required.
+- You want to start on managed infrastructure and migrate to your own cloud cluster later without changing your application code.
