@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # Autoscaling and Scale to Zero
 
-All Managed CaseDesk deployments (Starter, Team, and Advanced) scale to zero automatically when idle. BYOC deployments running on your own cluster are not affected by this policy.
+All Managed CaseDesk deployments (Starter, Team, and Advanced) scale to zero automatically when idle.
 
 ## How it works
 
@@ -18,9 +18,9 @@ No configuration is needed. Scale to zero applies to all managed deployments and
 
 | Tier | Runtime | Typical cold-start from idle |
 |------|---------|------------------------------|
-| Starter | Ollama | 15-30 seconds |
-| Team | vLLM | 30-90 seconds |
-| Advanced | vLLM | 30-90 seconds |
+| Starter | Ollama | 15–30 seconds |
+| Team | vLLM | 30–90 seconds |
+| Advanced | vLLM | 30–90 seconds |
 | Sandbox | Ollama (AWS ASG) | ~2 minutes (includes GPU node provisioning) |
 
 Starter deployments wake faster because Ollama has a lighter startup path than vLLM. Team and Advanced use vLLM, which must load model weights into GPU VRAM before serving the first request.
@@ -33,7 +33,7 @@ Applications connecting to a managed endpoint should handle an initial delay whe
 2. Waits while the model loads (see cold-start times above)
 3. Receives the response once the model is ready
 
-The request does not need to be retried - CaseDesk holds the connection open until the deployment is ready. Set your HTTP client timeout to at least 120 seconds to avoid premature disconnects on cold starts.
+The request does not need to be retried — CaseDesk holds the connection open until the deployment is ready. Set your HTTP client timeout to at least 120 seconds to avoid premature disconnects on cold starts.
 
 ## Checking deployment status
 

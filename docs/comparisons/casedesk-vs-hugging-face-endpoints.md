@@ -4,13 +4,13 @@ sidebar_position: 1
 
 # CaseDesk vs Hugging Face Inference Endpoints
 
-Hugging Face Inference Endpoints is a managed service that lets you deploy models from the Hugging Face Hub on Hugging Face's own cloud infrastructure. CaseDesk is also a managed service — but it runs in a dedicated cluster in your chosen region (UK, EU, or US), so your data never leaves that region. For teams that need inference inside their own cloud account, CaseDesk also offers a BYOC mode.
+Hugging Face Inference Endpoints is a managed service that lets you deploy models from the Hugging Face Hub on Hugging Face's own cloud infrastructure. CaseDesk is also a managed service — but it runs in a dedicated cluster in your chosen region (UK, EU, or US), so your data never leaves that region.
 
 ## The core difference
 
 With Hugging Face Endpoints, the execution environment is hosted by Hugging Face. Your prompts travel to their servers, inference happens there, and the response comes back to you. You have no control over which data centre processes your requests.
 
-With CaseDesk, your deployment runs on infrastructure CaseDesk manages in the region you choose — AWS eu-west-2 for UK, Azure westeurope for EU, GCP us-east1 for US. Your prompts never leave that region. CaseDesk does not log or store inference traffic. When you need even more control, the BYOC option deploys the same stack into your own Kubernetes cluster.
+With CaseDesk, your deployment runs on infrastructure CaseDesk manages in the region you choose — AWS eu-west-2 for UK, Azure westeurope for EU, GCP us-east1 for US. Your prompts never leave that region. CaseDesk does not log or store inference traffic.
 
 ## Comparison table
 
@@ -26,7 +26,7 @@ With CaseDesk, your deployment runs on infrastructure CaseDesk manages in the re
 | **GPU availability** | Dedicated namespace — no shared queues | Shared fleet; availability varies |
 | **Idle scale-down** | Scale to zero when idle, wakes on next request | Pause endpoint |
 | **Vendor lock-in** | None — OpenAI-compatible API, open-source models | Tied to HF's infrastructure and API format |
-| **Own-cloud option** | Yes — BYOC deploys into your AWS EKS, Azure AKS, or GCP GKE | No |
+| **Own-cloud option** | Yes — CaseDesk Enterprise deploys into your cloud account (consultative, not self-service) | No |
 | **Model source** | Any model in the catalogue (Llama, DeepSeek, Qwen, Phi, and more) | Hugging Face Hub models |
 
 ## When Hugging Face Endpoints makes sense
@@ -40,7 +40,7 @@ With CaseDesk, your deployment runs on infrastructure CaseDesk manages in the re
 - You need data to stay in a specific region — UK, EU, or US — for compliance, enterprise policy, or customer commitments.
 - You want a flat predictable monthly cost rather than per-minute GPU billing.
 - You're standardising on the OpenAI, Anthropic, or Gemini SDK format and don't want to maintain a separate HF client integration.
-- You want to start on managed infrastructure and move to your own cloud cluster later without changing your application code.
+- You need to integrate with existing code using the OpenAI, Anthropic, or Gemini SDKs — no client changes required.
 
 ## API compatibility note
 

@@ -6,13 +6,13 @@ sidebar_position: 3
 
 Every CaseDesk deployment exposes a Gemini-compatible endpoint following the Google `generativelanguage` REST API format:
 
-```
+```text
 https://getcasedesk.com/proxy/{deployment-id}/gemini/v1beta/models/{model}:generateContent
 ```
 
 For streaming responses, use the `:streamGenerateContent` action:
 
-```
+```text
 https://getcasedesk.com/proxy/{deployment-id}/gemini/v1beta/models/{model}:streamGenerateContent
 ```
 
@@ -22,10 +22,18 @@ Replace `{model}` with the model tag from your deployment (e.g. `gemma2:9b`, `ll
 CaseDesk does not expose CORS headers. Direct browser requests will fail. Always route requests through your own backend server.
 :::
 
+## API key
+
+Every deployment has a production API key in `cd_live_...` format. Find it on the deployment detail page. Pass it as a query parameter (the standard Gemini auth method):
+
+```text
+?key=cd_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
 ## curl
 
 ```bash
-curl "https://getcasedesk.com/proxy/{deployment-id}/gemini/v1beta/models/gemma2:9b:generateContent" \
+curl "https://getcasedesk.com/proxy/{deployment-id}/gemini/v1beta/models/gemma2:9b:generateContent?key=cd_live_xxx" \
   -H "Content-Type: application/json" \
   -d '{
     "contents": [
@@ -44,7 +52,7 @@ curl "https://getcasedesk.com/proxy/{deployment-id}/gemini/v1beta/models/gemma2:
 For streaming:
 
 ```bash
-curl "https://getcasedesk.com/proxy/{deployment-id}/gemini/v1beta/models/gemma2:9b:streamGenerateContent" \
+curl "https://getcasedesk.com/proxy/{deployment-id}/gemini/v1beta/models/gemma2:9b:streamGenerateContent?key=cd_live_xxx" \
   -H "Content-Type: application/json" \
   -d '{
     "contents": [
@@ -66,6 +74,7 @@ You can use the `google-generativeai` SDK by pointing it at your CaseDesk proxy,
 import requests
 
 deployment_id = "{deployment-id}"
+api_key = "cd_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 model = "gemma2:9b"
 base_url = f"https://getcasedesk.com/proxy/{deployment_id}/gemini/v1beta"
 
@@ -84,6 +93,7 @@ payload = {
 
 response = requests.post(
     f"{base_url}/models/{model}:generateContent",
+    params={"key": api_key},
     json=payload,
 )
 response.raise_for_status()
@@ -104,7 +114,7 @@ pip install google-generativeai
 import google.generativeai as genai
 
 genai.configure(
-    api_key="not-needed",
+    api_key="cd_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
     transport="rest",
     client_options={
         "api_endpoint": "https://getcasedesk.com/proxy/{deployment-id}/gemini",
@@ -124,6 +134,7 @@ print(response.text)
 
 ```javascript
 const deploymentId = '{deployment-id}';
+const apiKey = 'cd_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
 const model = 'gemma2:9b';
 const baseUrl = `https://getcasedesk.com/proxy/${deploymentId}/gemini/v1beta`;
 
@@ -141,7 +152,7 @@ const payload = {
 };
 
 const response = await fetch(
-  `${baseUrl}/models/${model}:generateContent`,
+  `${baseUrl}/models/${model}:generateContent?key=${apiKey}`,
   {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -157,7 +168,7 @@ console.log(data.candidates[0].content.parts[0].text);
 
 ```javascript
 const response = await fetch(
-  `${baseUrl}/models/${model}:streamGenerateContent`,
+  `${baseUrl}/models/${model}:streamGenerateContent?key=${apiKey}`,
   {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -186,4 +197,4 @@ while (true) {
 | `generationConfig.topP` | Nucleus sampling threshold. |
 | `systemInstruction` | Optional system prompt: `{"parts": [{"text": "..."}]}` |
 
-Replace `{deployment-id}` with the ID shown on your deployment detail page.
+Replace `{deployment-id}` with the ID shown on your deployment detail page, and `cd_live_xxx...` with your deployment's production API key.

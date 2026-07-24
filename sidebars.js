@@ -18,38 +18,8 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Connect Infrastructure',
+      label: 'Connect Your Servers',
       items: [
-        {
-          type: 'category',
-          label: 'Kubernetes Clusters',
-          items: [
-            {
-              type: 'category',
-              label: 'AWS EKS',
-              items: [
-                'connect-your-cluster/aws-eks/existing-cluster',
-                'connect-your-cluster/aws-eks/create-cluster',
-              ],
-            },
-            {
-              type: 'category',
-              label: 'Azure AKS',
-              items: [
-                'connect-your-cluster/azure-aks/existing-cluster',
-                'connect-your-cluster/azure-aks/create-cluster',
-              ],
-            },
-            {
-              type: 'category',
-              label: 'Google GKE',
-              items: [
-                'connect-your-cluster/gcp-gke/existing-cluster',
-                'connect-your-cluster/gcp-gke/create-cluster',
-              ],
-            },
-          ],
-        },
         {
           type: 'category',
           label: 'GPU VMs',
@@ -73,6 +43,7 @@ const sidebars = {
         'deploy-a-model/choosing-a-model',
         'deploy-a-model/deployment-status',
         'deploy-a-model/autoscaling',
+        'deploy-a-model/routing-pool',
       ],
     },
     {
@@ -95,9 +66,6 @@ const sidebars = {
       type: 'category',
       label: 'Guides',
       items: [
-        'guides/deploy-deepseek-on-aws-eks',
-        'guides/deploy-llama-on-kubernetes',
-        'guides/deploy-qwen-on-azure-aks',
         'guides/use-with-open-webui',
       ],
     },
@@ -113,15 +81,7 @@ const sidebars = {
       type: 'category',
       label: 'Troubleshooting',
       items: [
-        'troubleshooting/unauthorized',
         'troubleshooting/deployment-stuck-pending',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Security',
-      items: [
-        'security/iam-scoped-credentials',
       ],
     },
   ],
