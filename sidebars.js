@@ -67,6 +67,7 @@ const sidebars = {
       label: 'Guides',
       items: [
         'guides/use-with-open-webui',
+        'guides/intelligent-tools',
       ],
     },
     {

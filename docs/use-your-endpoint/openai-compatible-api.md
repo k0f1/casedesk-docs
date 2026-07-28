@@ -74,3 +74,15 @@ console.log(response.choices[0].message.content);
 ```
 
 Replace `{deployment-id}` with the ID from your deployment detail page, and `cd_live_xxx...` with your deployment's production API key.
+
+## Built-in tools
+
+When **Web Search**, **Web Reader**, or **Knowledge Bundles** are enabled on your deployment (from the deployment detail page → Intelligent Tools), the model can call them automatically — no extra code needed on your side.
+
+| Tool | What it does |
+| --- | --- |
+| Web Search | Searches the web for current information via SearXNG |
+| Web Reader | Fetches and reads the full text of a specific URL |
+| Knowledge Lookup | Retrieves from your attached OKF knowledge bundles |
+
+The model decides when to call tools based on the user's question. Tool calls happen server-side and are invisible to your client — you receive the final answer as a normal chat completion response.
