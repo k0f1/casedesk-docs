@@ -4,10 +4,10 @@ sidebar_position: 2
 
 # Anthropic-Compatible API
 
-Every CaseDesk deployment exposes an Anthropic Messages API-compatible endpoint:
+Every CaseDesk deployment exposes an Anthropic Messages API-compatible endpoint at the same base URL as the OpenAI SDK — no format-specific path required:
 
 ```text
-https://getcasedesk.com/proxy/{deployment-id}/anthropic/v1/messages
+https://getcasedesk.com/proxy/{deployment-id}/v1/messages
 ```
 
 You can use it as a drop-in replacement for the Anthropic API by overriding the base URL in the official SDK.
@@ -27,7 +27,7 @@ x-api-key: cd_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ## curl
 
 ```bash
-curl https://getcasedesk.com/proxy/{deployment-id}/anthropic/v1/messages \
+curl https://getcasedesk.com/proxy/{deployment-id}/v1/messages \
   -H "Content-Type: application/json" \
   -H "anthropic-version: 2023-06-01" \
   -H "x-api-key: cd_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" \
@@ -52,7 +52,7 @@ pip install anthropic
 import anthropic
 
 client = anthropic.Anthropic(
-    base_url="https://getcasedesk.com/proxy/{deployment-id}/anthropic",
+    base_url="https://getcasedesk.com/proxy/{deployment-id}",
     api_key="cd_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
 )
 
@@ -78,7 +78,7 @@ npm install @anthropic-ai/sdk
 import Anthropic from '@anthropic-ai/sdk';
 
 const client = new Anthropic({
-  baseURL: 'https://getcasedesk.com/proxy/{deployment-id}/anthropic',
+  baseURL: 'https://getcasedesk.com/proxy/{deployment-id}',
   apiKey: 'cd_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 });
 

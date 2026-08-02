@@ -4,16 +4,16 @@ sidebar_position: 3
 
 # Gemini-Compatible API
 
-Every CaseDesk deployment exposes a Gemini-compatible endpoint following the Google `generativelanguage` REST API format:
+Every CaseDesk deployment exposes a Gemini-compatible endpoint following the Google `generativelanguage` REST API format — at the same base proxy URL as the OpenAI and Anthropic SDKs:
 
 ```text
-https://getcasedesk.com/proxy/{deployment-id}/gemini/v1beta/models/{model}:generateContent
+https://getcasedesk.com/proxy/{deployment-id}/v1beta/models/{model}:generateContent
 ```
 
 For streaming responses, use the `:streamGenerateContent` action:
 
 ```text
-https://getcasedesk.com/proxy/{deployment-id}/gemini/v1beta/models/{model}:streamGenerateContent
+https://getcasedesk.com/proxy/{deployment-id}/v1beta/models/{model}:streamGenerateContent
 ```
 
 Replace `{model}` with the model tag from your deployment (e.g. `gemma2:9b`, `llama3.1:8b`).
@@ -33,7 +33,7 @@ Every deployment has a production API key in `cd_live_...` format. Find it on th
 ## curl
 
 ```bash
-curl "https://getcasedesk.com/proxy/{deployment-id}/gemini/v1beta/models/gemma2:9b:generateContent?key=cd_live_xxx" \
+curl "https://getcasedesk.com/proxy/{deployment-id}/v1beta/models/gemma2:9b:generateContent?key=cd_live_xxx" \
   -H "Content-Type: application/json" \
   -d '{
     "contents": [
@@ -52,7 +52,7 @@ curl "https://getcasedesk.com/proxy/{deployment-id}/gemini/v1beta/models/gemma2:
 For streaming:
 
 ```bash
-curl "https://getcasedesk.com/proxy/{deployment-id}/gemini/v1beta/models/gemma2:9b:streamGenerateContent?key=cd_live_xxx" \
+curl "https://getcasedesk.com/proxy/{deployment-id}/v1beta/models/gemma2:9b:streamGenerateContent?key=cd_live_xxx" \
   -H "Content-Type: application/json" \
   -d '{
     "contents": [
@@ -76,7 +76,7 @@ import requests
 deployment_id = "{deployment-id}"
 api_key = "cd_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 model = "gemma2:9b"
-base_url = f"https://getcasedesk.com/proxy/{deployment_id}/gemini/v1beta"
+base_url = f"https://getcasedesk.com/proxy/{deployment_id}/v1beta"
 
 payload = {
     "contents": [
@@ -117,7 +117,7 @@ genai.configure(
     api_key="cd_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
     transport="rest",
     client_options={
-        "api_endpoint": "https://getcasedesk.com/proxy/{deployment-id}/gemini",
+        "api_endpoint": "https://getcasedesk.com/proxy/{deployment-id}",
     },
 )
 
@@ -136,7 +136,7 @@ print(response.text)
 const deploymentId = '{deployment-id}';
 const apiKey = 'cd_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
 const model = 'gemma2:9b';
-const baseUrl = `https://getcasedesk.com/proxy/${deploymentId}/gemini/v1beta`;
+const baseUrl = `https://getcasedesk.com/proxy/${deploymentId}/v1beta`;
 
 const payload = {
   contents: [
