@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Intelligent Tools
 
-CaseDesk deployments can call built-in tools automatically — web search, URL reading, and internal knowledge lookup. When enabled, the model uses them during inference without any changes to your client code.
+CaseDesk deployments can call built-in tools automatically — web search and URL reading. When enabled, the model uses them during inference without any changes to your client code.
 
 ## How it works
 
@@ -20,7 +20,6 @@ Go to your deployment detail page → **Intelligent Tools** section. Toggle the 
 | --- | --- | --- |
 | Web Search | `web_search` | Current events, updated guidelines, statistics, anything that may have changed since training |
 | Web Reader | `web_reader` | When the user asks about a specific URL or document |
-| Attach a bundle | `okf_lookup` | Internal policies, clinical pathways, compliance requirements — your own knowledge |
 
 All three endpoint formats benefit from the same tools:
 

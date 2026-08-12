@@ -21,7 +21,6 @@ CaseDesk gives your organisation a private AI inference endpoint powered by open
 - **Routing pool** — deploy multiple models behind a single endpoint URL; the request's `model` field selects which model handles it
 - **vLLM continuous batching** — Team and Advanced tiers serve up to 20 or 50 concurrent users from a single pod, with no per-seat charges
 - **Scale to zero** — managed deployments scale down when idle and wake automatically on the next request
-- **Knowledge bundles** — manage versioned OKF bundles inside CaseDesk as a separate organisational knowledge capability
 - **Data residency** — UK (AWS eu-west-2, DSPT compliant), EU (Azure westeurope), or US (GCP us-east1)
 
 ## How CaseDesk compares

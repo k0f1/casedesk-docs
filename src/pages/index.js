@@ -17,9 +17,9 @@ const FeatureList = [
     link: '/deploy-a-model/choosing-a-model',
   },
   {
-    title: 'Manage Knowledge',
-    description: 'Upload OKF knowledge bundles to organise policies, runbooks, and reference material inside CaseDesk as a separate knowledge capability.',
-    link: '/knowledge/bundles',
+    title: 'Regional Control',
+    description: 'Choose UK, EU, or US regional deployment and keep your production endpoint aligned with your compliance boundary from day one.',
+    link: '/introduction/what-is-casedesk',
   },
   {
     title: 'Use Your AI Endpoint',
@@ -32,7 +32,7 @@ const WorkflowSteps = [
   'Answer 5 Questions',
   'Get Recommendation',
   'Deploy Instantly',
-  'Manage Knowledge',
+  'Connect Your Tools',
   'Use Anywhere',
 ];
 
