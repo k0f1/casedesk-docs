@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Knowledge Bundles (OKF)
 
-Knowledge bundles let you attach your organisation's documents to a deployment. When a bundle is attached, the CaseDesk inference proxy automatically searches it for relevant context whenever a query relates to your organisational knowledge. No prompt changes are required in your application.
+Knowledge bundles let you manage your organisation's structured documents inside CaseDesk. Bundles remain separate from deployment inference so endpoint behaviour stays focused on workload policy and compatible APIs.
 
 ## What is OKF
 
@@ -29,25 +29,9 @@ my-org.okf/
 3. Upload a `.okf.zip` file
 4. CaseDesk extracts and indexes the bundle
 
-## Attaching a bundle to a deployment
+## Deployment separation
 
-A bundle must be attached to a deployment before it affects inference.
-
-1. Go to **Knowledge**
-2. Find the bundle card and click **Attach**
-3. Select the deployment to attach it to
-4. Click **Confirm**
-
-Once attached, the inference proxy includes relevant bundle content in the context for matching queries.
-
-## Detaching a bundle
-
-1. Go to **Knowledge**
-2. Find the bundle card
-3. Click the attached deployment name to open the attachment options
-4. Click **Detach**
-
-The deployment continues operating normally without the bundle.
+Knowledge bundles are no longer attached to deployments. Endpoint inference remains governed by workload policy and endpoint tools such as web search, web reader, and model routing. Manage bundles in the Knowledge area without coupling them to a specific deployment.
 
 ## Bundle format reference
 

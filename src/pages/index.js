@@ -17,8 +17,8 @@ const FeatureList = [
     link: '/deploy-a-model/choosing-a-model',
   },
   {
-    title: 'Attach Knowledge',
-    description: 'Upload OKF knowledge bundles — your documentation, runbooks, and policies. Your endpoint answers questions grounded in your own data, not the open internet.',
+    title: 'Manage Knowledge',
+    description: 'Upload OKF knowledge bundles to organise policies, runbooks, and reference material inside CaseDesk as a separate knowledge capability.',
     link: '/knowledge/bundles',
   },
   {
@@ -32,7 +32,7 @@ const WorkflowSteps = [
   'Answer 5 Questions',
   'Get Recommendation',
   'Deploy Instantly',
-  'Attach Knowledge',
+  'Manage Knowledge',
   'Use Anywhere',
 ];
 
