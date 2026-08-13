@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Choosing the Right Plan
 
-Managed CaseDesk is a flat monthly subscription. Choose the plan that matches your model size and concurrency requirements.
+Managed CaseDesk is a flat monthly subscription. The recommendation flow starts from workload intent, then maps to the smallest safe plan that can satisfy the required runtime envelope.
 
 ## Plans
 
@@ -30,15 +30,18 @@ Team and Advanced use vLLM continuous batching. Multiple users can generate resp
 
 The flat monthly price covers all concurrent users with no additional per-seat charges.
 
-## Choosing a model
+## Choosing a deployment path
 
-Within each plan, you choose a model from the catalogue at deployment time. Guidance by use case:
+The wizard should be read as a workload-to-runtime decision, not a raw model-catalogue picker. Guidance by workload:
 
-| Use case | Recommended model range |
-|----------|------------------------|
-| Assistants, chatbots, customer support | 1–8B (Starter) |
-| Complex reasoning, agents, document analysis | 9–20B (Team) |
-| Large-context tasks, long documents, legal/medical analysis | 21–70B (Advanced) |
+| Workload profile | Intended for | Recommended plan floor |
+|------------------|--------------|------------------------|
+| `KNOWLEDGE_STANDARD` | General assistant work, explanations, and trusted internal materials | Starter or Team |
+| `CODING_STANDARD` | Code generation, code review, repository-aware agents, Claude Code, Codex | Advanced |
+| `RESEARCH_STANDARD` | Web search, synthesis, and current-information workflows | Team or Advanced |
+| `AUTOMATION_STANDARD` | Structured automation and business-system routing | Starter or Team |
+
+For coding intent, CaseDesk must keep the deployment on a coding-capable runtime envelope. Smaller tiers may still appear as alternatives, but they are not coding-agent ready.
 
 :::tip Evaluating hosted alternatives?
 If you're comparing CaseDesk against GPU cloud or serverless inference providers, see the [comparison pages](https://getcasedesk.com/compare) for a side-by-side breakdown on cost, data ownership, and control.

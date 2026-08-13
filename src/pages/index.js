@@ -8,7 +8,7 @@ import styles from './index.module.css';
 const FeatureList = [
   {
     title: 'Find Your Platform',
-    description: 'Answer five questions about your team, use case, and region. CaseDesk recommends the right model size, runtime, and compliance tier — no infrastructure knowledge required.',
+    description: 'Answer five questions about workload, team, region, availability, and compliance. CaseDesk recommends the right deployment path and workload profile — no infrastructure knowledge required.',
     link: '/getting-started/quick-start',
   },
   {
@@ -32,7 +32,7 @@ const WorkflowSteps = [
   'Answer 5 Questions',
   'Get Recommendation',
   'Deploy Instantly',
-  'Connect Your Tools',
+  'Review Workload Fit',
   'Use Anywhere',
 ];
 
@@ -94,7 +94,7 @@ export default function Home() {
               margin: '0 auto',
               color: 'var(--ifm-color-emphasis-700)',
             }}>
-              CaseDesk provisions a dedicated AI endpoint for your engineering team. Choose your model size, region, and compliance level — we handle the infrastructure. vLLM continuous batching, scale to zero when idle, OpenAI-compatible API. Your data never leaves your chosen region.
+              CaseDesk provisions a dedicated AI endpoint for your engineering team. Start from workload intent, regional control, and compliance needs — we handle the infrastructure. vLLM continuous batching, scale to zero when idle, OpenAI-compatible API. Your data never leaves your chosen region.
             </p>
           </div>
         </section>

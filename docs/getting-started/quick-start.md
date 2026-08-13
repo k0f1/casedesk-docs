@@ -10,12 +10,11 @@ The fastest way to get a private AI endpoint is through the Managed CaseDesk wiz
 
 1. [Sign in](https://getcasedesk.com/login) to your CaseDesk account
 2. The wizard launches automatically after sign-in
-3. Choose a plan: **Starter**, **Team**, or **Advanced** (see [Choosing a Plan](/deploy-a-model/choosing-a-model) for a full comparison)
-4. Choose a region: UK, EU, or US
-5. Choose a model from the catalogue
-6. Click **Deploy** — CaseDesk provisions your cluster and deployment
-7. Wait for the status to reach **running** (~5–10 min on first deploy)
-8. Copy your endpoint URL and production API key (`cd_live_...`) from the deployment detail page
+3. Answer the five recommendation questions about workload, team, region, availability, and compliance
+4. Review the recommended deployment path and plan fit (see [Choosing a Plan](/deploy-a-model/choosing-a-model) for the workload/tier guide)
+5. Click **Deploy** — CaseDesk provisions your cluster and deployment
+6. Wait for the status to reach **running** (~5–10 min on first deploy)
+7. Copy your endpoint URL and production API key (`cd_live_...`) from the deployment detail page
 
 Managed deployments are billed as a flat monthly subscription. No GPU-hour charges.
 
