@@ -48,13 +48,6 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Knowledge',
-      items: [
-        'knowledge/bundles',
-      ],
-    },
-    {
-      type: 'category',
       label: 'Use Your Endpoint',
       items: [
         'use-your-endpoint/openai-compatible-api',
