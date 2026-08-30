@@ -4,30 +4,33 @@ sidebar_position: 1
 
 # What is CaseDesk
 
-CaseDesk gives your organisation a private AI inference endpoint powered by open-source models. Your data never leaves your chosen region.
+CaseDesk is a private AI platform for software teams. It provides one trusted
+API surface, routing, policy controls, and operational visibility over the AI
+runtime your organisation or provider controls.
 
-## Deployment modes
+## Product journey
 
-**Managed CaseDesk** — CaseDesk provisions and runs a dedicated cluster on AWS in your chosen region. You get an OpenAI-compatible endpoint within minutes. Flat monthly subscription — no per-token or per-GPU-hour charges.
+**Developer Sandbox**: a free deterministic API test with separate `cd_test_`
+credentials. It validates client compatibility but does not run a live model.
 
-**CaseDesk Enterprise** — For NHS Trusts, government, and regulated industries. Your cloud account, full data sovereignty. Sold through a consultative process — not self-service.
+**Connected Trial**: a qualified 14-day trial through an existing endpoint in
+your cloud, provider, cluster, or VM. Your organisation pays the runtime bill.
 
-**Connect Your Server** — Connect an existing GPU VM or on-prem server. CaseDesk installs the runtime and handles endpoint routing. Inference is free once your server is connected — you pay only your cloud provider.
+**Connected Production**: the same verified endpoint continues after commercial
+approval. CaseDesk charges prepaid platform fees; your provider continues to
+bill you for model and infrastructure use.
 
 ## Key capabilities
 
-- **OpenAI-compatible API** — drop-in replacement for OpenAI endpoints in any application
-- **Production API key** — `cd_live_...` format key per deployment, shown on the deployment detail page and regeneratable at any time
-- **Routing pool** — deploy multiple models behind a single endpoint URL; the request's `model` field selects which model handles it
-- **vLLM continuous batching** — Team and Advanced tiers serve up to 20 or 50 concurrent users from a single pod, with no per-seat charges
-- **Scale to zero** — managed deployments scale down when idle and wake automatically on the next request
-- **Data residency** — UK (AWS eu-west-2, DSPT compliant), EU (Azure westeurope), or US (GCP us-east1)
+- **Compatible APIs**: OpenAI-compatible requests today, with account-level
+  routing selected by the requested model.
+- **Separate credentials**: sandbox, trial, and production access are distinct.
+- **Regional control**: choose a customer-controlled runtime and declare its
+  region and data boundary before activation.
+- **Fail-closed billing**: paid routing stops before dispatch when CaseDesk
+  credit is insufficient; it never falls back to CaseDesk-funded capacity.
+- **Operational clarity**: connection verification and trial status make payer,
+  endpoint, and service boundary visible.
 
-## How CaseDesk compares
-
-Evaluating hosted alternatives? See how CaseDesk stacks up:
-
-- [CaseDesk vs RunPod](https://getcasedesk.com/compare/runpod) — managed vs rented GPU cloud
-- [CaseDesk vs Hugging Face Endpoints](https://getcasedesk.com/compare/huggingface-endpoints) — data residency and API compatibility
-- [CaseDesk vs Replicate](https://getcasedesk.com/compare/replicate) — flat subscription vs per-second billing
-- [CaseDesk vs Modal](https://getcasedesk.com/compare/modal) — dedicated inference vs serverless GPU compute
+CaseDesk is not a GPU reseller. It does not charge a percentage of your AWS,
+cloud VM, or hardware invoice.

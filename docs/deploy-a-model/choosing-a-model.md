@@ -2,47 +2,38 @@
 sidebar_position: 1
 ---
 
-# Choosing the Right Plan
+# Choosing a Connection
 
-Managed CaseDesk is a flat monthly subscription. The recommendation flow starts from workload intent, then maps to the smallest safe plan that can satisfy the required runtime envelope.
+Choose a workload contract first, then connect a runtime that your organisation
+or approved provider already controls. CaseDesk does not sell or automatically
+create GPU capacity.
 
-## Plans
+## Supported service paths
 
-| Plan | Monthly price | Model size | Runtime | Max concurrent users |
-|------|--------------|------------|---------|----------------------|
-| Starter | £199 / €229 / $239 | 1–8B | Ollama (sequential) | 1 |
-| Team | £449 / €499 / $519 | 9–20B | vLLM | 20 |
-| Advanced | £1,199 / €1,349 / $1,399 | 21–70B | vLLM | 50 |
-| Enterprise Isolation | Custom | Any | Dedicated hardware node | Custom |
+| Path | What it proves or provides | Who pays runtime costs |
+|---|---|---|
+| Developer Sandbox | Deterministic API and SDK compatibility test | Nobody; no live runtime exists |
+| Connected Trial | A real endpoint in your environment for 14 days | Your organisation or provider account |
+| Connected Production | Continued use of that approved endpoint | Your organisation or provider account |
+| Enterprise | Annual agreement, support, SLA, and private terms | Defined in the agreement |
 
-Prices are per deployment, billed monthly. No GPU-hour charges. No per-seat charges.
+## Workload contracts
 
-[Contact sales](mailto:sales@getcasedesk.com) for Enterprise Isolation pricing.
+| Workload profile | Intended for | Connection review focus |
+|---|---|---|
+| `KNOWLEDGE_STANDARD` | General assistant and internal questions | Model and regional data boundary |
+| `CODING_STANDARD` | Code generation, review, and repository work | Coding-capable context and tool contract |
+| `RESEARCH_STANDARD` | Search, synthesis, and current information | Routing and tool policy |
+| `AUTOMATION_STANDARD` | Structured business workflows | Output schema and availability expectations |
 
-## Concurrency
+## CaseDesk charges
 
-Starter uses Ollama, which processes requests sequentially. It is suited to single-user or low-concurrency workloads.
+CaseDesk charges platform services from prepaid credit, not your provider bill:
 
-Team and Advanced use vLLM continuous batching. Multiple users can generate responses simultaneously from a single pod:
+- £49/month for the first active production connection
+- £10/month for each additional active production connection
+- 5% only on provider usage CaseDesk can route and meter reliably
 
-- **Team** — up to 20 concurrent users generating at once
-- **Advanced** — up to 50 concurrent users generating at once
-
-The flat monthly price covers all concurrent users with no additional per-seat charges.
-
-## Choosing a deployment path
-
-The wizard should be read as a workload-to-runtime decision, not a raw model-catalogue picker. Guidance by workload:
-
-| Workload profile | Intended for | Recommended plan floor |
-|------------------|--------------|------------------------|
-| `KNOWLEDGE_STANDARD` | General assistant work, explanations, and trusted internal materials | Starter or Team |
-| `CODING_STANDARD` | Code generation, code review, repository-aware agents, Claude Code, Codex | Advanced |
-| `RESEARCH_STANDARD` | Web search, synthesis, and current-information workflows | Team or Advanced |
-| `AUTOMATION_STANDARD` | Structured automation and business-system routing | Starter or Team |
-
-For coding intent, CaseDesk must keep the deployment on a coding-capable runtime envelope. Smaller tiers may still appear as alternatives, but they are not coding-agent ready.
-
-:::tip Evaluating hosted alternatives?
-If you're comparing CaseDesk against GPU cloud or serverless inference providers, see the [comparison pages](https://getcasedesk.com/compare) for a side-by-side breakdown on cost, data ownership, and control.
-:::
+Your provider continues to invoice its compute, model, and data-transfer usage
+directly. A connection that CaseDesk cannot meter does not receive an automatic
+percentage charge.

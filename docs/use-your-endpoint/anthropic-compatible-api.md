@@ -4,121 +4,25 @@ sidebar_position: 2
 
 # Anthropic-Compatible API
 
-Every CaseDesk deployment exposes an Anthropic Messages API-compatible endpoint at the same base URL as the OpenAI SDK — no format-specific path required:
-
-```text
-https://getcasedesk.com/proxy/{deployment-id}/v1/messages
-```
-
-You can use it as a drop-in replacement for the Anthropic API by overriding the base URL in the official SDK.
-
-:::warning Always call from your server — never from the browser
-CaseDesk does not expose CORS headers. Direct browser requests will fail. Always route requests through your own backend server.
-:::
-
-## API key
-
-Every deployment has a production API key in `cd_live_...` format. Find it on the deployment detail page. Pass it as the `x-api-key` header (the standard Anthropic auth header):
-
-```http
-x-api-key: cd_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-```
-
-## curl
-
-```bash
-curl https://getcasedesk.com/proxy/{deployment-id}/v1/messages \
-  -H "Content-Type: application/json" \
-  -H "anthropic-version: 2023-06-01" \
-  -H "x-api-key: cd_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" \
-  -d '{
-    "model": "llama3.1:8b",
-    "max_tokens": 1024,
-    "messages": [{"role": "user", "content": "Explain quantum entanglement in simple terms."}]
-  }'
-```
-
-The `anthropic-version: 2023-06-01` header is required — it matches the version expected by the Anthropic Messages API format.
-
-## Python
-
-Install the SDK if you haven't already:
-
-```bash
-pip install anthropic
-```
+Use the base URL and API key shown in **Settings**. Anthropic clients append
+their own Messages API path, so use `https://getcasedesk.com` without `/v1` as
+the base URL.
 
 ```python
-import anthropic
+from anthropic import Anthropic
 
-client = anthropic.Anthropic(
-    base_url="https://getcasedesk.com/proxy/{deployment-id}",
-    api_key="cd_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+client = Anthropic(
+    base_url="https://getcasedesk.com",
+    api_key="cd_live_your-key",
 )
 
 message = client.messages.create(
-    model="llama3.1:8b",
-    max_tokens=1024,
-    messages=[
-        {"role": "user", "content": "Explain quantum entanglement in simple terms."}
-    ],
+    model="your-approved-model",
+    max_tokens=256,
+    messages=[{"role": "user", "content": "Hello"}],
 )
-print(message.content[0].text)
 ```
 
-## Node.js (server-side only)
-
-Install the SDK if you haven't already:
-
-```bash
-npm install @anthropic-ai/sdk
-```
-
-```javascript
-import Anthropic from '@anthropic-ai/sdk';
-
-const client = new Anthropic({
-  baseURL: 'https://getcasedesk.com/proxy/{deployment-id}',
-  apiKey: 'cd_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-});
-
-const message = await client.messages.create({
-  model: 'llama3.1:8b',
-  max_tokens: 1024,
-  messages: [
-    { role: 'user', content: 'Explain quantum entanglement in simple terms.' },
-  ],
-});
-
-console.log(message.content[0].text);
-```
-
-## Supported request fields
-
-The endpoint accepts the standard Anthropic Messages API request body:
-
-| Field | Required | Notes |
-|---|---|---|
-| `model` | Yes | The model tag from your deployment (e.g. `llama3.1:8b`, `deepseek-r1:14b`) |
-| `messages` | Yes | Array of `{role, content}` objects |
-| `max_tokens` | Yes | Maximum tokens to generate |
-| `system` | No | System prompt string |
-| `temperature` | No | Sampling temperature (0–1) |
-| `stream` | No | Set to `true` for server-sent events streaming |
-
-Replace `{deployment-id}` with the ID shown on your deployment detail page, and `cd_live_xxx...` with your deployment's production API key.
-
-## Built-in tools
-
-When workload-aware endpoint tools are active for your deployment, the model can call them automatically — no extra code needed on your side.
-
-| Tool | What it does |
-| --- | --- |
-| Web Search | Searches the web for current information via SearXNG |
-| Web Reader | Fetches and reads the full text of a specific URL |
-
-The model decides when to call tools based on the user's question. Tool calls happen server-side — you receive the final answer as a normal Anthropic Messages API response.
-
-:::note Streaming and tools
-When tools are enabled, the endpoint returns a buffered (non-streaming) response even if your request sets `stream: true`. This is because tool calls may require multiple model roundtrips before the final answer is ready.
-:::
+The requested model must be approved on a healthy customer-controlled
+connection. CaseDesk does not create a runtime or provider fallback for this
+request.

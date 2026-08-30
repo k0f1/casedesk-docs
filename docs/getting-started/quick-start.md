@@ -4,36 +4,45 @@ sidebar_position: 1
 
 # Quick Start
 
-The fastest way to get a private AI endpoint is through the Managed CaseDesk wizard. CaseDesk provisions the cluster — no infrastructure setup required.
+CaseDesk is a private AI control plane for software teams. Start with a free
+compatibility test, then connect a runtime your organisation controls for a
+real production evaluation.
 
-## Managed CaseDesk (recommended)
+## 1. Try the Developer Sandbox
 
-1. [Sign in](https://getcasedesk.com/login) to your CaseDesk account
-2. The wizard launches automatically after sign-in
-3. Answer the five recommendation questions about workload, team, region, availability, and compliance
-4. Review the recommended deployment path and plan fit (see [Choosing a Plan](/deploy-a-model/choosing-a-model) for the workload/tier guide)
-5. Click **Deploy** — CaseDesk provisions your cluster and deployment
-6. Wait for the status to reach **running** (~5–10 min on first deploy)
-7. Copy your endpoint URL and production API key (`cd_live_...`) from the deployment detail page
+1. [Create an account](https://getcasedesk.com/register) or sign in.
+2. Open **Deploy** and select **Open Developer Sandbox**.
+3. Open **Settings** to find the sandbox URL and your separate `cd_test_...`
+   key.
+4. Send the sample request shown on that page.
 
-Managed deployments are billed as a flat monthly subscription. No GPU-hour charges.
+The sandbox returns a deterministic response. It proves authentication and SDK
+request compatibility; it does not run a live model, allocate a GPU, or need a
+payment method.
 
-## Sandbox (free, for testing)
+## 2. Connect production infrastructure
 
-The CaseDesk Sandbox gives you a shared GPU environment to test models without a subscription.
+1. Prepare an OpenAI-compatible endpoint in your existing cloud account,
+   provider account, Kubernetes cluster, or VM.
+2. Open **Settings** and select **Connect your infrastructure for a deployment
+   trial**.
+3. Submit its URL, region, data boundary, and approved model.
+4. CaseDesk verifies the payer declaration, endpoint health, and data boundary.
+5. Once approved, activate the 14-day connected trial with its separate trial
+   credential.
 
-1. [Sign in](https://getcasedesk.com/login) to your CaseDesk account
-2. Go to **Models** and click **Deploy Model**
-3. Select **CaseDesk Sandbox** as the target
-4. Click **Deploy**
-5. Wait for the deployment to go from **pending** to **running** (~10–18 min on first deploy — includes GPU node provisioning)
-6. Copy your endpoint URL and production API key from the deployment detail page
+Your cloud or model provider remains the runtime payer throughout the trial.
+CaseDesk does not create capacity or fall back to CaseDesk-funded hardware.
 
-The Sandbox is shared infrastructure. For production use, upgrade to a Managed CaseDesk plan.
+## 3. Move to paid production
 
-## Connect your own server
+Request conversion from the connected trial. The verified connection and
+endpoint stay in place. Add CaseDesk credit for platform services only:
 
-If you prefer to run inference on your own hardware:
+- £49/month while the first production connection is active
+- £10/month for each additional active production connection
+- 5% only on provider usage that CaseDesk can reliably route and meter
 
-- **GPU VM** — see [Connect a GPU VM](/connect-your-cluster/gpu-vm/connect-via-ssh)
-- **On-prem server** (no inbound ports) — see [Install the agent](/connect-your-cluster/onprem/install-agent)
+These charges are separate from your provider's runtime bill. See
+[Choosing a connection](/deploy-a-model/choosing-a-model) for the supported
+workload and commercial boundary.

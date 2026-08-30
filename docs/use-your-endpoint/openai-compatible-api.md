@@ -4,84 +4,29 @@ sidebar_position: 1
 
 # OpenAI-Compatible API
 
-Every CaseDesk deployment exposes an OpenAI-compatible endpoint:
+Use the account-level base URL and credentials displayed in **Settings**. Do
+not add a deployment ID to the URL. CaseDesk selects the approved connection
+from the requested model and service policy.
 
-```text
-https://getcasedesk.com/proxy/{deployment-id}/v1
-```
-
-You can use it as a drop-in replacement for the OpenAI API in any OpenAI SDK or compatible client.
-
-:::warning Always call from your server — never from the browser
-CaseDesk does not expose CORS headers. Direct browser requests will fail. Always route requests through your own backend server.
-:::
-
-## API key
-
-Every deployment has a production API key in `cd_live_...` format. Find it on the deployment detail page — click **Show key** next to the endpoint URL. You can regenerate it at any time from the same page.
-
-Pass it as a Bearer token in all API calls:
-
-```http
-Authorization: Bearer cd_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-```
-
-## curl
-
-```bash
-curl https://getcasedesk.com/proxy/{deployment-id}/v1/chat/completions \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer cd_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" \
-  -d '{
-    "model": "llama3.2:3b",
-    "messages": [{"role": "user", "content": "Hello!"}]
-  }'
-```
-
-## Python
+## Production request
 
 ```python
 from openai import OpenAI
 
 client = OpenAI(
-    base_url="https://getcasedesk.com/proxy/{deployment-id}/v1",
-    api_key="cd_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    base_url="https://getcasedesk.com/v1",
+    api_key="cd_live_your-key",
 )
 
 response = client.chat.completions.create(
-    model="llama3.2:3b",
-    messages=[{"role": "user", "content": "Hello!"}],
+    model="your-approved-model",
+    messages=[{"role": "user", "content": "Hello"}],
 )
-print(response.choices[0].message.content)
 ```
 
-## Node.js (server-side only)
+Use a `cd_test_...` key and the sandbox URL shown in Settings for deterministic
+integration testing. A sandbox response is not live model output.
 
-```javascript
-import OpenAI from 'openai';
-
-const client = new OpenAI({
-  baseURL: 'https://getcasedesk.com/proxy/{deployment-id}/v1',
-  apiKey: 'cd_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-});
-
-const response = await client.chat.completions.create({
-  model: 'llama3.2:3b',
-  messages: [{ role: 'user', content: 'Hello!' }],
-});
-
-console.log(response.choices[0].message.content);
-```
-
-Replace `{deployment-id}` with the ID from your deployment detail page, and `cd_live_xxx...` with your deployment's production API key.
-
-## Built-in tools
-
-When workload-aware endpoint tools are active for your deployment, the model can call them automatically — no extra code needed on your side.
-
-| Tool | What it does |
-| --- | --- |
-| Web Search | Searches the web for current information via SearXNG |
-| Web Reader | Fetches and reads the full text of a specific URL |
-
-The model decides when to call tools based on the user's question. Tool calls happen server-side and are invisible to your client — you receive the final answer as a normal chat completion response.
+For production, CaseDesk routes only to a verified customer-controlled
+connection. If it is unhealthy, expired, unapproved, or paused for billing,
+the request fails clearly rather than falling back to another provider.

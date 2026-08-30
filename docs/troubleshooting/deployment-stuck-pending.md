@@ -1,21 +1,21 @@
 ---
-sidebar_position: 2
+sidebar_position: 1
 ---
 
-# Deployment Stuck on Pending
+# Connection Is Not Activating
 
-If a deployment stays on **pending** for more than 20 minutes, check the logs from the deployment detail page.
+CaseDesk does not provision a GPU or model as part of activation. A connection
+can remain unavailable only while its verification, billing, trial, or health
+requirement is unresolved.
 
-## Common causes
+Check the following:
 
-- **GPU node provisioning** — Sandbox deployments provision a GPU node on demand. First-time provisioning can take up to 18 minutes. If still pending after 20 minutes, contact support.
-- **Model download in progress** — Large models (70B+) take longer to pull. Check the logs for download progress messages.
-- **Deployment failed silently** — The status may not update correctly if the pod errored during startup. Click **View Logs** to see the actual pod output.
+1. The endpoint URL is reachable by CaseDesk over HTTPS.
+2. The submitted region, data boundary, and model match the runtime.
+3. The workspace administrator has confirmed the customer or provider payer.
+4. The connection has been approved and is healthy.
+5. The trial is not expired and production credit is available where required.
 
-## View logs
-
-From the deployment detail page click **View Logs**. Look for errors in the init container (model pull) or main container startup.
-
-## Still stuck?
-
-If the deployment has been pending for more than 30 minutes with no activity in the logs, delete it and redeploy. If the issue recurs, [contact support](mailto:support@getcasedesk.com) with your deployment ID.
+If the connection is unhealthy, restore it in the customer-controlled
+environment and request verification again. CaseDesk will not dispatch traffic
+to another endpoint or create fallback capacity.

@@ -4,46 +4,17 @@ sidebar_position: 1
 
 # CaseDesk vs Hugging Face Inference Endpoints
 
-Hugging Face Inference Endpoints is a managed service that lets you deploy models from the Hugging Face Hub on Hugging Face's own cloud infrastructure. CaseDesk is also a managed service — but it runs in a dedicated cluster in your chosen region (UK, EU, or US), so your data never leaves that region.
+Hugging Face Inference Endpoints hosts models in Hugging Face-managed cloud
+infrastructure. CaseDesk connects its control plane to an endpoint your
+organisation or approved provider already controls.
 
-## The core difference
+| Question | CaseDesk | Hugging Face Inference Endpoints |
+|---|---|---|
+| Runtime ownership | Customer or approved provider | Hugging Face |
+| Runtime payer | Customer or approved provider | Hugging Face customer account |
+| Platform role | API compatibility, routing, policy, and observability | Managed endpoint hosting |
+| Capacity fallback | Never creates CaseDesk-funded capacity | Provider-managed service |
+| Regional boundary | Customer-selected and verified | Provider-selected configuration |
 
-With Hugging Face Endpoints, the execution environment is hosted by Hugging Face. Your prompts travel to their servers, inference happens there, and the response comes back to you. You have no control over which data centre processes your requests.
-
-With CaseDesk, your deployment runs on infrastructure CaseDesk manages in the region you choose — AWS eu-west-2 for UK, Azure westeurope for EU, GCP us-east1 for US. Your prompts never leave that region. CaseDesk does not log or store inference traffic.
-
-## Comparison table
-
-| | CaseDesk | Hugging Face Endpoints |
-| --- | --- | --- |
-| **Where inference runs** | CaseDesk-managed cluster in your chosen region (UK / EU / US) | Hugging Face's infrastructure |
-| **Data privacy** | Prompts stay in your chosen region; CaseDesk does not log inference | Prompts processed on Hugging Face's servers |
-| **Region control** | UK (AWS eu-west-2), EU (Azure westeurope), US (GCP us-east1) | AWS, Azure, GCP — but on HF's tenancy |
-| **API format** | OpenAI, Anthropic, and Gemini compatible | Hugging Face Inference API format |
-| **Existing SDK compatibility** | Drop-in: works with `openai`, `anthropic`, `google-generativeai` | Requires HF client or custom HTTP calls |
-| **Cost model** | Flat monthly subscription — no per-token or per-GPU-hour charges | Per minute of runtime |
-| **Infrastructure setup** | None — CaseDesk provisions and manages the cluster | No cluster required |
-| **GPU availability** | Dedicated namespace — no shared queues | Shared fleet; availability varies |
-| **Idle scale-down** | Scale to zero when idle, wakes on next request | Pause endpoint |
-| **Vendor lock-in** | None — OpenAI-compatible API, open-source models | Tied to HF's infrastructure and API format |
-| **Own-cloud option** | Yes — CaseDesk Enterprise deploys into your cloud account (consultative, not self-service) | No |
-| **Model source** | Any model in the catalogue (Llama, DeepSeek, Qwen, Phi, and more) | Hugging Face Hub models |
-
-## When Hugging Face Endpoints makes sense
-
-- You want to experiment with a wide range of community models from the HF Hub.
-- Data residency requirements are not strict.
-- You're already deeply integrated with the Hugging Face ecosystem.
-
-## When CaseDesk makes sense
-
-- You need data to stay in a specific region — UK, EU, or US — for compliance, enterprise policy, or customer commitments.
-- You want a flat predictable monthly cost rather than per-minute GPU billing.
-- You're standardising on the OpenAI, Anthropic, or Gemini SDK format and don't want to maintain a separate HF client integration.
-- You need to integrate with existing code using the OpenAI, Anthropic, or Gemini SDKs — no client changes required.
-
-## API compatibility note
-
-Hugging Face Endpoints returns responses in the [HF Text Generation Inference](https://huggingface.co/docs/text-generation-inference) format, which differs from the OpenAI Chat Completions schema. If you're migrating from an OpenAI-compatible setup, you'll need to adapt your client code.
-
-CaseDesk endpoints return OpenAI-compatible responses by default, so existing code using the `openai` SDK works without changes.
+Choose CaseDesk when infrastructure ownership, payer separation, and a single
+governed API surface matter more than hosted endpoint convenience.
