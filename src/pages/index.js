@@ -12,8 +12,8 @@ const FeatureList = [
     link: '/getting-started/quick-start',
   },
   {
-    title: 'Dedicated Endpoint',
-    description: 'Your deployment runs on a dedicated namespace — no shared GPU with other customers. vLLM continuous batching serves your whole team simultaneously. Scales to zero when idle.',
+    title: 'Governed Connection',
+    description: 'Connect an approved vLLM, cloud, or provider endpoint that your organisation controls. CaseDesk supplies compatible APIs, routing, policy, and operational visibility without owning the runtime capacity.',
     link: '/deploy-a-model/choosing-a-model',
   },
   {
@@ -31,7 +31,7 @@ const FeatureList = [
 const WorkflowSteps = [
   'Answer 5 Questions',
   'Get Recommendation',
-  'Deploy Instantly',
+  'Connect and Verify',
   'Review Workload Fit',
   'Use Anywhere',
 ];
@@ -82,7 +82,7 @@ export default function Home() {
   return (
     <Layout
       title="CaseDesk Documentation"
-      description="Private AI for software teams. Dedicated inference endpoints, your region, your data.">
+      description="Private AI control plane for software teams. Connect infrastructure you control through compatible APIs, policy, and operational visibility.">
       <HomepageHeader />
       <main>
         <section style={{padding: '2rem 0 0'}}>
@@ -94,7 +94,7 @@ export default function Home() {
               margin: '0 auto',
               color: 'var(--ifm-color-emphasis-700)',
             }}>
-              CaseDesk provisions a dedicated AI endpoint for your engineering team. Start from workload intent, regional control, and compliance needs — we handle the infrastructure. vLLM continuous batching, scale to zero when idle, OpenAI-compatible API. Your data never leaves your chosen region.
+              CaseDesk gives your engineering team one governed API surface over an approved endpoint your organisation or provider controls. Start from workload intent, regional control, and compliance needs; CaseDesk verifies the connection and adds compatible APIs, routing, policy, and operational visibility. Your provider bills the runtime directly.
             </p>
           </div>
         </section>
