@@ -38,7 +38,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Deploy a Model',
+      label: 'Connect a Runtime',
       items: [
         'deploy-a-model/choosing-a-model',
         'deploy-a-model/deployment-status',

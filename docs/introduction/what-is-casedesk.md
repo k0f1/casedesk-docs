@@ -28,7 +28,7 @@ bill you for model and infrastructure use.
 - **Regional control**: choose a customer-controlled runtime and declare its
   region and data boundary before activation.
 - **Fail-closed billing**: paid routing stops before dispatch when CaseDesk
-  credit is insufficient; it never falls back to CaseDesk-funded capacity.
+  credit is insufficient; it never substitutes a different runtime.
 - **Operational clarity**: connection verification and trial status make payer,
   endpoint, and service boundary visible.
 

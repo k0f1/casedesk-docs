@@ -29,7 +29,7 @@ docker run -d \
 
 Replace `cd_live_xxx...` with the account-level production API key shown in CaseDesk Settings. The requested model must be approved on a healthy customer-controlled connection.
 
-Then open `http://localhost:3000`. Your deployed model will appear in the model selector.
+Then open `http://localhost:3000`. Models approved for your connected runtime will appear in the model selector.
 
 ---
 

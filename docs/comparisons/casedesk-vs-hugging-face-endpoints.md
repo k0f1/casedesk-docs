@@ -13,7 +13,7 @@ organisation or approved provider already controls.
 | Runtime ownership | Customer or approved provider | Hugging Face |
 | Runtime payer | Customer or approved provider | Hugging Face customer account |
 | Platform role | API compatibility, routing, policy, and observability | Managed endpoint hosting |
-| Capacity fallback | Never creates CaseDesk-funded capacity | Provider-managed service |
+| Capacity fallback | Never substitutes a different runtime | Provider-managed service |
 | Regional boundary | Customer-selected and verified | Provider-selected configuration |
 
 Choose CaseDesk when infrastructure ownership, payer separation, and a single

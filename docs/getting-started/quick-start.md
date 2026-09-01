@@ -11,7 +11,7 @@ real production evaluation.
 ## 1. Try the Developer Sandbox
 
 1. [Create an account](https://getcasedesk.com/register) or sign in.
-2. Open **Deploy** and select **Open Developer Sandbox**.
+2. Open **Connect** and select **Open Developer Sandbox**.
 3. Open **Settings** to find the sandbox URL and your separate `cd_test_...`
    key.
 4. Send the sample request shown on that page.
@@ -32,7 +32,8 @@ payment method.
    credential.
 
 Your cloud or model provider remains the runtime payer throughout the trial.
-CaseDesk does not create capacity or fall back to CaseDesk-funded hardware.
+CaseDesk does not create capacity or substitute a different runtime when the
+verified connection is unavailable.
 
 ## 3. Move to paid production
 
