@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Use with Open WebUI
 
-[Open WebUI](https://openwebui.com) is an open-source chat interface compatible with OpenAI-compatible APIs. You self-host Open WebUI and point it at your CaseDesk endpoint — the model inference runs through CaseDesk, the UI runs on your own machine or server.
+[Open WebUI](https://openwebui.com) is an open-source chat interface compatible with OpenAI-compatible APIs. You self-host Open WebUI and point it at your CaseDesk account endpoint; model inference remains at the approved customer-controlled or provider-controlled runtime, while the UI runs on your own machine or server.
 
 :::info CaseDesk does not host Open WebUI for customers
 Each team runs its own Open WebUI instance. The instructions below show how to connect it to your approved CaseDesk production connection.
