@@ -12,7 +12,9 @@ runtime payer.
 
 1. In CaseDesk, open **Connections** and choose **AWS guided deployment**.
 2. Select **Open AWS CloudFormation in a new tab**. Keep the CaseDesk tab open.
-3. AWS shows a prefilled CloudFormation template. Do not change its parameters.
+3. AWS shows a prefilled CloudFormation template with a unique stack name. Do
+   not change its parameters; an earlier failed or deleted attempt cannot block
+   a new one.
 4. Tick the acknowledgement for the named IAM role, then select **Create stack**.
 5. AWS creates the role and tells CaseDesk, server to server, that the stack
    completed. CaseDesk verifies the role before it can read inventory.
