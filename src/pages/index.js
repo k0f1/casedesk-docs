@@ -18,7 +18,7 @@ const FeatureList = [
   },
   {
     title: 'Regional Control',
-    description: 'Choose UK, EU, or US regional deployment and keep your production endpoint aligned with your compliance boundary from day one.',
+    description: 'Declare the region and data boundary for the endpoint your organisation or provider controls. CaseDesk verifies that declaration before activation.',
     link: '/introduction/what-is-casedesk',
   },
   {
