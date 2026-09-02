@@ -22,14 +22,23 @@ payment method.
 
 ## 2. Connect production infrastructure
 
-1. Prepare an OpenAI-compatible endpoint in your existing cloud account,
-   provider account, Kubernetes cluster, or VM.
-2. Open **Settings** and select **Connect your infrastructure for a deployment
-   trial**.
-3. Submit its URL, region, data boundary, and approved model.
-4. CaseDesk verifies the payer declaration, endpoint health, and data boundary.
-5. Once approved, activate the 14-day connected trial with its separate trial
-   credential.
+For AWS, start with the guided connection rather than collecting endpoint
+details yourself:
+
+1. Open **Connections** and select **AWS guided deployment**.
+2. CaseDesk opens AWS CloudFormation in a separate tab. Keep the CaseDesk tab
+   open so it can show the verification result.
+3. In AWS, review the prefilled template, acknowledge creation of the named IAM
+   role, and select **Create stack**.
+4. The one-time stack creates only a read-only discovery role. It does not
+   create a cluster, VM, GPU, model, endpoint, or runtime capacity.
+5. Return to CaseDesk. It verifies that the role belongs to your AWS account
+   before read-only cluster and GPU-VM discovery can begin.
+
+Use **I already have a vLLM endpoint** only when your technical team already
+operates an OpenAI-compatible runtime and wants CaseDesk to verify that endpoint.
+See [Connect AWS infrastructure](/connect-your-cluster/aws/guided-discovery)
+for the permissions, acknowledgement, and expected AWS outcomes.
 
 Your cloud or model provider remains the runtime payer throughout the trial.
 CaseDesk does not create capacity or substitute a different runtime when the

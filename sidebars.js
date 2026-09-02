@@ -22,6 +22,13 @@ const sidebars = {
       items: [
         {
           type: 'category',
+          label: 'AWS',
+          items: [
+            'connect-your-cluster/aws/guided-discovery',
+          ],
+        },
+        {
+          type: 'category',
           label: 'GPU VMs',
           items: [
             'connect-your-cluster/gpu-vm/connect-via-ssh',
