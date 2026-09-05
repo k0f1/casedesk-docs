@@ -36,9 +36,9 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'On-prem Servers',
+          label: 'Dedicated Hardware',
           items: [
-            'connect-your-cluster/onprem/install-agent',
+            'connect-your-cluster/dedicated-hardware',
           ],
         },
       ],
