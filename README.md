@@ -26,16 +26,34 @@ This command generates static content into the `build` directory and can be serv
 
 ## Deployment
 
-Using SSH:
+The public documentation site is deployed through **Cloudflare Pages**, not
+GitHub Pages.
+
+| Setting | Value |
+| --- | --- |
+| Cloudflare Pages project | `casedesk-docs` |
+| Source repository | `k0f1/casedesk-docs` |
+| Production branch | `main` |
+| Build command | `npm run build` |
+| Build output directory | `build` |
+| Public domains | `https://docs.getcasedesk.com` and `casedesk-docs.pages.dev` |
+
+Cloudflare deploys a new production build when a commit reaches `main`.
+
+### Access and recovery
+
+Sign in to Cloudflare using **Sign in with GitHub** and the GitHub account that
+owns `k0f1/casedesk-docs`. Then open **Workers & Pages** and select the
+`casedesk-docs` project.
+
+If the project is not visible, first verify that you are signed in through the
+correct GitHub account. Do not create a replacement Pages project or attach the
+custom domain until you have confirmed the existing project is unavailable. A
+replacement project could disrupt `docs.getcasedesk.com`.
+
+Before relying on a deployment, run:
 
 ```bash
-USE_SSH=true yarn deploy
+npm run check:product-boundary
+npm run build
 ```
-
-Not using SSH:
-
-```bash
-GIT_USER=<Your GitHub username> yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
