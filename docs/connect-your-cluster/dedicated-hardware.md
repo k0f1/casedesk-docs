@@ -4,85 +4,61 @@ sidebar_position: 3
 
 # Dedicated Hardware
 
-Dedicated Hardware is the CaseDesk path for an organisation-owned Mac,
-workstation, or server. It turns a local model runtime into a governed private
-AI connection for a software team, without requiring Kubernetes, a public IP,
-or an inbound firewall rule.
+Use infrastructure your organisation owns for a governed private AI connection.
+For engineering teams with suitable Apple Silicon Macs, start with a focused
+[Claude Code coding pilot](./mac-coding-pilot.md) before expanding adoption.
 
-CaseDesk does not buy, operate, or pay for the hardware. Your organisation
-retains the device, runtime, model storage, network boundary, and operating
-costs. CaseDesk provides the approval workflow, compatible connection, health
-visibility, and operational controls around that runtime.
+CaseDesk guides setup, owner approval, client access and status. Your organisation
+retains the hardware, local runtime, model storage and operating costs. The agent
+uses an authenticated outbound connection; the local runtime needs no public IP,
+inbound firewall rule or Kubernetes installation.
 
-## When to use it
+## Choose a supported workflow
 
-Dedicated Hardware is a good fit when your organisation wants to use hardware
-it already owns while giving multiple internal tools and staff a controlled AI
-connection. It is especially useful for Apple Silicon systems and Linux systems
-with NVIDIA GPUs.
+The verified Mac coding path uses **Qwen3 4B with vLLM Metal**, a reviewed
+65,536-token context and one concurrent request. It replaces the earlier Mac
+7B recommendation. The reference machine has 36 GiB of memory. Each device must
+pass capability checks and each client installation must pass workflow checks.
 
-Running `ollama pull` directly remains a sensible option for an individual
-developer or an unmanaged experiment. CaseDesk is for the point where that
-runtime becomes a team dependency: model changes need approval, availability
-needs visibility, and clients need a stable compatible connection.
+Follow the [Mac coding pilot guide](./mac-coding-pilot.md) for prerequisites,
+installation, plan approval, Claude Code setup and troubleshooting. Installing
+an updated agent does not change an existing approved runtime plan automatically.
 
-## Early-access prerequisites
-
-Before you start, identify a device owner who can approve local changes and
-maintain the host. The first supported paths are:
-
-- Apple Silicon Macs using Ollama.
-- Linux NVIDIA workstations or servers using Ollama. A higher-concurrency vLLM
-  profile is planned for suitable Linux hardware.
-
-The host needs outbound HTTPS access to CaseDesk. It does not need SSH access
-from CaseDesk, a public IP address, Kubernetes, or an inbound firewall rule.
+Linux NVIDIA workstations and servers require their own supported runtime
+profile and qualification. The Mac installer does not install a Linux runtime,
+and Mac workflow evidence does not establish Linux or multi-user capacity.
+Contact CaseDesk to review that hardware and workload before a rollout.
 
 ## Connect a device
 
-1. In **Connections**, choose **Dedicated Hardware**.
-2. Generate a one-time device claim code. Treat it as a credential: it is shown
-   once and expires shortly after creation.
-3. Run the signed CaseDesk Device Agent on the hardware host and provide the
-   claim code during setup. The agent establishes an outbound authenticated
-   connection and submits a redacted capability report.
-4. Review the reported platform, accelerator capacity, runtime readiness, and
-   eligibility. No model runtime is changed during claiming.
-5. Select the approved profile and prepare a reviewed plan. The plan pins the
-   model digest, lists the proposed runtime changes, and sets bounded
-   concurrency and queue limits.
-6. Approve the exact plan. Only then may the Device Agent retrieve that signed
-   configuration, verify the approved runtime and model, and report service
-   health.
+1. Open [Dedicated Hardware](https://getcasedesk.com/connections/dedicated-hardware).
+2. For a new device, generate a one-time claim code and enter it in the installed
+   Device Agent. Keep the code private. Already claimed devices retain registration.
+3. Review the read-only capability report. Claiming does not approve installation.
+4. Prepare a supported plan and review its model, local changes and operating limits.
+5. Approve the exact plan. The agent can then retrieve that signed configuration,
+   prepare the approved runtime and verify the model.
+6. Wait for ready status, then authorise and verify the intended client workflow.
 
-## What the Device Agent does
+## Operate the pilot
 
-The Device Agent is a small local system component, not an AI agent. It
-establishes the outbound connection, reports device and runtime health, and
-enforces the configuration approved by the device owner.
+The device view distinguishes an online agent from a ready model and reports
+maintenance or unavailable states. Keep the Mac awake, powered and connected.
+Use background controls for planned maintenance and revoke access when needed.
 
-It can report redacted operational facts such as platform, accelerator memory,
-runtime readiness, model verification, and connectivity state. It does not
-require raw cloud credentials, receive inbound network access, or expose the
-local runtime directly to the public internet.
+Measure quality, response time and availability on representative work. Verify
+recovery after restarting the agent, and test full host reboot recovery separately.
+A single workstation is not high availability. Simultaneous team use, larger
+repositories and customised client tools require separate validation.
 
-## Operate it as a service
+## Review the data and operating boundary
 
-The Dedicated Hardware view reports whether the device is online, draining for
-maintenance, revoked, or unavailable. It also distinguishes device presence
-from model and runtime readiness.
+Inference runs on your hardware. Client requests, including supplied project and
+tool content, and model responses pass through the CaseDesk gateway. This is not
+an offline or air-gapped service; include the gateway in your security review.
+CaseDesk does not silently route unavailable work to unapproved hardware.
 
-A single workstation is not high availability. Plan for power, network,
-sleep/reboot recovery, disk capacity, and a second approved device or another
-approved runtime before making the connection a critical business dependency.
-CaseDesk will not silently route work to unapproved hardware.
-
-## Customer-controlled boundary
-
-CaseDesk governs the connection around your runtime; it does not replace your
-infrastructure operations. Your organisation remains responsible for hardware
-procurement, electrical and network costs, physical security, host operating
-system maintenance, and the runtime capacity it chooses to make available.
-
-For an architecture review or early-access onboarding, contact the CaseDesk
-team before connecting production workloads.
+Your organisation remains responsible for physical security, OS maintenance,
+power, networking, available capacity and the people authorised to use the device.
+For an enterprise pilot, [contact CaseDesk](https://getcasedesk.com/contact) to
+review the workflow, data path, operating owner and acceptance criteria.

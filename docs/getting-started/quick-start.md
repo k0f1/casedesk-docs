@@ -20,6 +20,15 @@ The sandbox returns a deterministic response. It proves authentication and SDK
 request compatibility; it does not run a live model, allocate a GPU, or need a
 payment method.
 
+## Start with a company-owned Mac
+
+Engineering teams with suitable Apple Silicon Macs can evaluate a local coding
+workflow with Claude Code. CaseDesk guides device setup, reviewed plan approval,
+client access and status. Start with the [Mac coding pilot guide](/connect-your-cluster/mac-coding-pilot).
+The tested plan serves one request at a time; qualify your own workload before
+planning wider team use. Inference is local, while requests and responses pass
+through CaseDesk.
+
 ## 2. Connect production infrastructure
 
 For AWS, start with the guided connection rather than collecting endpoint
