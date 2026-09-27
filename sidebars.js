@@ -39,6 +39,7 @@ const sidebars = {
           label: 'Dedicated Hardware',
           items: [
             'connect-your-cluster/dedicated-hardware',
+            'connect-your-cluster/mac-coding-pilot',
           ],
         },
       ],
